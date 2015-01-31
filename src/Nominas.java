@@ -1,14 +1,9 @@
-
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import nominas.gui.AltaEmpleado;
 import nominas.gui.LoginFrame;
 
 public class Nominas {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -23,6 +18,14 @@ public class Nominas {
         LoginFrame login = new LoginFrame();
         java.awt.EventQueue.invokeLater(() -> {
             login.setVisible(true);
-        });        
+        });
+        int i = 0;
+        while(login.isGuess){
+            Thread.sleep(1000);
+        }
+        java.awt.EventQueue.invokeLater(() -> {
+            new AltaEmpleado().setVisible(true);
+        });
+        System.out.println("Ya entro");
     }
 }

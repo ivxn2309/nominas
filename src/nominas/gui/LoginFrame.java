@@ -12,6 +12,9 @@ import nominas.entity.User;
 import nominas.util.HibernateUtil;
 
 public class LoginFrame extends javax.swing.JFrame {
+    
+    // Variable que indica si el usuario esta logueado en el sistema
+    public boolean isGuess = true;
 
     /**
      * Creates new form LoginFrame
@@ -29,11 +32,24 @@ public class LoginFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         txtUser = new javax.swing.JTextField();
         btnEntrar = new javax.swing.JButton();
         lblUser = new javax.swing.JLabel();
         lblPass = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
+        statusBar = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Nominas");
@@ -49,34 +65,29 @@ public class LoginFrame extends javax.swing.JFrame {
 
         lblPass.setText("Contraseña");
 
+        statusBar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
+        statusBar.setForeground(new java.awt.Color(102, 102, 102));
+        statusBar.setText("Ingresa tus datos para comenzar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUser)
-                            .addComponent(txtPass, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))))
-                .addContainerGap(62, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lblUser))
-                    .addComponent(lblPass))
-                .addGap(165, 165, 165))
+                    .addComponent(txtPass)
+                    .addComponent(statusBar, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                    .addComponent(btnEntrar, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPass, javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(txtUser, javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblUser, javax.swing.GroupLayout.Alignment.CENTER))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addComponent(lblUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -86,13 +97,15 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(statusBar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        statusBar.setText("Validando...");
         //Se genera un objeto con los datos ingresados
         String username = txtUser.getText();
         String password = new String(txtPass.getPassword());
@@ -101,20 +114,26 @@ public class LoginFrame extends javax.swing.JFrame {
         //Se comprueba si es un usuario valido
         try {
             boolean valid = new UserController().isValidUser(user);
-            if(valid)
-                System.out.println("Valido");
-            else
-                System.out.println("Invalido");
+            if(valid){
+                isGuess = false;
+                statusBar.setText("Ingresando...");
+            }
+            else {
+                isGuess = true;
+                statusBar.setText("Tus datos son incorrectos, intenta de nuevo");
+            }
+                
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblPass;
     private javax.swing.JLabel lblUser;
+    private javax.swing.JLabel statusBar;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
