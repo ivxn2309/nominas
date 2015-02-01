@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS Empleados (
     horas_dia INT(2),
     dias_jornada INT(2),
     nomina INT(4),
+    salario INT(5),
     PRIMARY KEY(id_empleado),
     FOREIGN KEY(departamento) REFERENCES Departamentos(id_dep),
     FOREIGN KEY(puesto) REFERENCES Puestos(id_puesto),

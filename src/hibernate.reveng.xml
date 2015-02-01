@@ -3,4 +3,8 @@
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="nominas"/>
   <table-filter match-name="user"/>
+  <table-filter match-name="puestos"/>
+  <table-filter match-name="empleados"/>
+  <table-filter match-name="departamentos"/>
+  <table-filter match-name="listanominas"/>
 </hibernate-reverse-engineering>

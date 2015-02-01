@@ -10,5 +10,8 @@
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <mapping class="nominas/entity/User.java" file="" jar="" package="" resource="nominas/entity/User.hbm.xml"/>
+    <mapping class="nominas/entity/Puesto.java" file="" jar="" package="" resource="nominas/entity/Puesto.hbm.xml"/>
+    <mapping class="nominas/entity/Departamento.java" file="" jar="" package="" resource="nominas/entity/Departamento.hbm.xml"/>
+    <mapping class="nominas/entity/ListaNomina.java" file="" jar="" package="" resource="nominas/entity/ListaNomina.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

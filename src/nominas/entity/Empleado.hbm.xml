@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class catalog="nominas" name="nominas.entity.Empleado" optimistic-lock="version" table="empleados">
+    <id name="id_empleado" type="int">
+      <column length="6" name="id_empleado"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="nombre" type="string">
+      <column length="100" name="nombre" not-null="true"/>
+    </property>
+    <property name="apellido" type="string">
+      <column length="100" name="apellido" not-null="true"/>
+    </property>
+    <property name="email" type="string">
+      <column length="100" name="email" not-null="false"/>
+    </property>
+    <property name="rfc" type="string">
+      <column length="100" name="rfc" not-null="false"/>
+    </property>
+    <property name="imss" type="string">
+      <column length="100" name="imss" not-null="false"/>
+    </property>
+    <property name="departamento" type="int">
+      <column length="4" name="departamento" not-null="false"/>
+    </property>
+    <property name="puesto" type="int">
+      <column length="4" name="puesto" not-null="false"/>
+    </property>
+    <property name="fecha_ingreso" type="date">
+      <column length="10" name="fecha_ingreso" not-null="false"/>
+    </property>
+    <property name="horas_dia" type="int">
+      <column length="2" name="horas_dia" not-null="false"/>
+    </property>
+    <property name="dias_jornada" type="int">
+      <column length="2" name="dias_jornada" not-null="false"/>
+    </property>
+    <property name="nomina" type="int">
+      <column length="4" name="nomina" not-null="false"/>
+    </property>
+    <property name="salario" type="int">
+      <column length="5" name="salario" not-null="false"/>
+    </property>
+  </class>
+</hibernate-mapping>
