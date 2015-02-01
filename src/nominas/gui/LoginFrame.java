@@ -54,6 +54,8 @@ public class LoginFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Nominas");
 
+        txtUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +66,8 @@ public class LoginFrame extends javax.swing.JFrame {
         lblUser.setText("Usuario:");
 
         lblPass.setText("Contraseña");
+
+        txtPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         statusBar.setFont(new java.awt.Font("Century Gothic", 0, 11)); // NOI18N
         statusBar.setForeground(new java.awt.Color(102, 102, 102));

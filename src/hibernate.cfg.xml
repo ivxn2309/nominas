@@ -13,5 +13,6 @@
     <mapping class="nominas/entity/Puesto.java" file="" jar="" package="" resource="nominas/entity/Puesto.hbm.xml"/>
     <mapping class="nominas/entity/Departamento.java" file="" jar="" package="" resource="nominas/entity/Departamento.hbm.xml"/>
     <mapping class="nominas/entity/ListaNomina.java" file="" jar="" package="" resource="nominas/entity/ListaNomina.hbm.xml"/>
+    <mapping class="nominas/entity/Empleado.java" file="" jar="" package="" resource="nominas/entity/Empleado.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

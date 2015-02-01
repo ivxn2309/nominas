@@ -302,7 +302,7 @@ public class AltaEmpleado extends javax.swing.JFrame {
             empleado.setHoras_dia((Integer)spinnerHoras.getValue());
             empleado.setDias_jornada((Integer)spinnerDias.getValue());
             empleado.setSalario((Integer)spinnerSalario.getValue());
-            empleado.setFecha_ingeso(toDate(chooserDateIngreso.getText()));
+            empleado.setFechaIngeso(toDate(chooserDateIngreso.getText()));
             empleado.setDepartamento(((Departamento)comboDepartamentos.getSelectedItem()).getId_dep());
             empleado.setPuesto(((Puesto)comboPuestos.getSelectedItem()).getId_puesto());
             empleado.setNomina(((ListaNomina)comboNominas.getSelectedItem()).getId());

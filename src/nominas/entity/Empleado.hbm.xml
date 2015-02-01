@@ -27,9 +27,6 @@
     <property name="puesto" type="int">
       <column length="4" name="puesto" not-null="false"/>
     </property>
-    <property name="fecha_ingreso" type="date">
-      <column length="10" name="fecha_ingreso" not-null="false"/>
-    </property>
     <property name="horas_dia" type="int">
       <column length="2" name="horas_dia" not-null="false"/>
     </property>
