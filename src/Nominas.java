@@ -5,6 +5,7 @@ import nominas.gui.MainWindow;
 public class Nominas {
 
     public static void main(String[] args) throws InterruptedException {
+        // Se configura Look and Feel con Nimbus
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -16,18 +17,23 @@ public class Nominas {
             java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         
+        //Muestra el formulario de identifiación
         LoginFrame login = new LoginFrame();
         java.awt.EventQueue.invokeLater(() -> {
             login.setVisible(true);
         });
-        int i = 0;
+        
+        //Se pausa hasta que se hayan ingresado datos correctos
         while(login.isGuess){
-            Thread.sleep(1000);
+            Thread.yield();
         }
+        
+        //Se oculta el formulario de identificaión
         login.setVisible(false);
+        
+        //Se muestra la ventana principal
         java.awt.EventQueue.invokeLater(() -> {
             new MainWindow().setVisible(true);
         });
-        System.out.println("Ya entro");
     }
 }
