@@ -1,5 +1,6 @@
 import nominas.gui.AltaEmpleado;
 import nominas.gui.LoginFrame;
+import nominas.gui.MainWindow;
 
 public class Nominas {
 
@@ -23,8 +24,9 @@ public class Nominas {
         while(login.isGuess){
             Thread.sleep(1000);
         }
+        login.setVisible(false);
         java.awt.EventQueue.invokeLater(() -> {
-            new AltaEmpleado().setVisible(true);
+            new MainWindow().setVisible(true);
         });
         System.out.println("Ya entro");
     }

@@ -78,7 +78,8 @@ public class AltaEmpleado extends javax.swing.JFrame {
         buttonSave = new javax.swing.JButton();
         statusBar = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Nuevo Empleado");
+        setName("formRegistroEmpleado"); // NOI18N
 
         tabbedPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -304,31 +305,24 @@ public class AltaEmpleado extends javax.swing.JFrame {
             empleado.setHoras_dia((Integer)spinnerHoras.getValue());
             empleado.setDias_jornada((Integer)spinnerDias.getValue());
             empleado.setSalario(((Double)spinnerSalario.getValue()).intValue());
-            empleado.setFechaIngreso(toDate(chooserDateIngreso.getSelectedDate()));
+            empleado.setFechaIngreso(chooserDateIngreso.getSelectedDate().getTime());
             empleado.setDepartamento(((Departamento)comboDepartamentos.getSelectedItem()).getId_dep());
             empleado.setPuesto(((Puesto)comboPuestos.getSelectedItem()).getId_puesto());
             empleado.setNomina(((ListaNomina)comboNominas.getSelectedItem()).getId());
             new EmpleadoController().saveNewEmpleado(empleado).toString();
             statusBar.setText("Empleado guardado correctamente");
-            /*
-            txtNombre.setText("");
-            txtApellido.setText("");
-            txtEmail.setText("");
-            txtIMSS.setText("");
-            txtRFC.setText("");
-            */
+            clearFields();
+            this.setVisible(false);
         }
     }//GEN-LAST:event_buttonSaveActionPerformed
 
-    private Date toDate(Calendar value) {
-        /*
-        String [] values = value.split("/");
-        int dia = Integer.parseInt(values[0]);
-        int mes = Integer.parseInt(values[1]);
-        int year = Integer.parseInt(values[2]);
-        return year + "-" + mes + "-" + dia;
-                */
-        return value.getTime();
+    private void clearFields(){
+        txtApellido.setText("");
+        txtEmail.setText("");
+        txtIMSS.setText("");
+        txtNombre.setText("");
+        txtRFC.setText("");
+        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
