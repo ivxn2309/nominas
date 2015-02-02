@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS Empleados (
     imss VARCHAR(100),
     departamento INT(4),
     puesto INT(4),
-    fecha_ingreso DATETIME,
+    fecha_ingreso DATE,
     horas_dia INT(2),
     dias_jornada INT(2),
     nomina INT(4),

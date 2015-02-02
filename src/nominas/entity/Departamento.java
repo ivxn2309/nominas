@@ -1,5 +1,8 @@
 package nominas.entity;
-public class Departamento {
+
+import java.io.Serializable;
+
+public class Departamento implements Serializable {
     private int id_dep;
     private String nombre;
 

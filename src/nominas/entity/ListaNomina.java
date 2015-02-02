@@ -1,5 +1,8 @@
 package nominas.entity;
-public class ListaNomina {
+
+import java.io.Serializable;
+
+public class ListaNomina implements Serializable {
     private int id;
     private String nombre;
 

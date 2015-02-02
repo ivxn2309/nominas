@@ -1,12 +1,11 @@
 package nominas.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import javax.persistence.*;
 
-@Entity
-@Table(name = "Account")
-public class Empleado {
+public class Empleado implements Serializable {
     private int id_empleado;
     private String nombre;
     private String apellido;
@@ -15,7 +14,7 @@ public class Empleado {
     private String imss;
     private int departamento;
     private int puesto;
-    private Date fechaIngeso;
+    private Date fechaIngreso;
     private int horas_dia;
     private int dias_jornada;
     private int nomina;
@@ -24,7 +23,7 @@ public class Empleado {
     public Empleado() {
     }
 
-    public Empleado(int id_empleado, String nombre, String apellido, String email, String rfc, String imss, int departamento, int puesto, Date fechaIngeso, int horas_dia, int dias_jornada, int nomina, int salario) {
+    public Empleado(int id_empleado, String nombre, String apellido, String email, String rfc, String imss, int departamento, int puesto, Date fechaIngreso, int horas_dia, int dias_jornada, int nomina, int salario) {
         this.id_empleado = id_empleado;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -33,16 +32,13 @@ public class Empleado {
         this.imss = imss;
         this.departamento = departamento;
         this.puesto = puesto;
-        this.fechaIngeso = fechaIngeso;
+        this.fechaIngreso = fechaIngreso;
         this.horas_dia = horas_dia;
         this.dias_jornada = dias_jornada;
         this.nomina = nomina;
         this.salario = salario;
     }
 
-    @Id
-    @GeneratedValue
-    @Column(name = "id_empleado")
     public int getId_empleado() {
         return id_empleado;
     }
@@ -107,13 +103,12 @@ public class Empleado {
         this.puesto = puesto;
     }
     
-    @Column(name = "fecha_ingreso")
-    public Date getFechaIngeso() {
-        return fechaIngeso;
+    public Date getFechaIngreso() {
+        return fechaIngreso;
     }
 
-    public void setFechaIngeso(Date fechaIngeso) {
-        this.fechaIngeso = fechaIngeso;
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
     }
 
     public int getHoras_dia() {

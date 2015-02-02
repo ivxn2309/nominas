@@ -2,9 +2,11 @@ package nominas.gui;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import nominas.control.DeptoController;
 import nominas.control.EmpleadoController;
 import nominas.control.ListaNominaController;
@@ -301,29 +303,32 @@ public class AltaEmpleado extends javax.swing.JFrame {
             empleado.setRfc(txtRFC.getText());
             empleado.setHoras_dia((Integer)spinnerHoras.getValue());
             empleado.setDias_jornada((Integer)spinnerDias.getValue());
-            empleado.setSalario((Integer)spinnerSalario.getValue());
-            empleado.setFechaIngeso(toDate(chooserDateIngreso.getText()));
+            empleado.setSalario(((Double)spinnerSalario.getValue()).intValue());
+            empleado.setFechaIngreso(toDate(chooserDateIngreso.getSelectedDate()));
             empleado.setDepartamento(((Departamento)comboDepartamentos.getSelectedItem()).getId_dep());
             empleado.setPuesto(((Puesto)comboPuestos.getSelectedItem()).getId_puesto());
             empleado.setNomina(((ListaNomina)comboNominas.getSelectedItem()).getId());
-            String id = new EmpleadoController().saveNewEmpleado(empleado).toString();
-            statusBar.setText("Empleado guardado correctamente con el id " + id);
+            new EmpleadoController().saveNewEmpleado(empleado).toString();
+            statusBar.setText("Empleado guardado correctamente");
+            /*
             txtNombre.setText("");
             txtApellido.setText("");
             txtEmail.setText("");
             txtIMSS.setText("");
             txtRFC.setText("");
+            */
         }
     }//GEN-LAST:event_buttonSaveActionPerformed
 
-    private Date toDate(String value) {
+    private Date toDate(Calendar value) {
+        /*
         String [] values = value.split("/");
         int dia = Integer.parseInt(values[0]);
         int mes = Integer.parseInt(values[1]);
         int year = Integer.parseInt(values[2]);
-        Calendar cal = Calendar.getInstance();
-        cal.set(year, mes, dia);
-        return new Date(cal.getTimeInMillis());
+        return year + "-" + mes + "-" + dia;
+                */
+        return value.getTime();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
