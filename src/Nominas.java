@@ -1,4 +1,6 @@
-import nominas.gui.AltaEmpleado;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import nominas.gui.LoginFrame;
 import nominas.gui.MainWindow;
 
@@ -33,7 +35,11 @@ public class Nominas {
         
         //Se muestra la ventana principal
         java.awt.EventQueue.invokeLater(() -> {
-            new MainWindow().setVisible(true);
+            try {
+                new MainWindow().setVisible(true);
+            } catch (IOException ex) {
+                Logger.getLogger(Nominas.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 }

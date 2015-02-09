@@ -1,10 +1,15 @@
 package nominas.gui;
 
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import nominas.control.UserController;
@@ -12,7 +17,7 @@ import nominas.entity.User;
 import nominas.util.HibernateUtil;
 
 public class LoginFrame extends javax.swing.JFrame {
-    
+
     // Variable que indica si el usuario esta logueado en el sistema
     public boolean isGuess = true;
 
@@ -20,7 +25,9 @@ public class LoginFrame extends javax.swing.JFrame {
      * Creates new form LoginFrame
      */
     public LoginFrame() {
+        Image img = Toolkit.getDefaultToolkit().getImage("res/icon.png");
         initComponents();
+        this.setIconImage(img);
     }
 
     /**
@@ -32,7 +39,7 @@ public class LoginFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        panel = new javax.swing.JPanel();
         txtUser = new javax.swing.JTextField();
         btnEntrar = new javax.swing.JButton();
         lblUser = new javax.swing.JLabel();
@@ -40,14 +47,14 @@ public class LoginFrame extends javax.swing.JFrame {
         txtPass = new javax.swing.JPasswordField();
         statusBar = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
@@ -56,6 +63,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         txtUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        btnEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/unlock_.png"))); // NOI18N
         btnEntrar.setText("Entrar");
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +73,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
         lblUser.setText("Usuario:");
 
-        lblPass.setText("Contraseña");
+        lblPass.setText("Contraseña:");
 
         txtPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
@@ -80,12 +88,16 @@ public class LoginFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPass)
-                    .addComponent(statusBar, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                    .addComponent(btnEntrar, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPass, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(txtUser, javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(lblUser, javax.swing.GroupLayout.Alignment.CENTER))
+                    .addComponent(statusBar, javax.swing.GroupLayout.Alignment.CENTER, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblUser)
+                            .addComponent(lblPass)
+                            .addComponent(txtUser)
+                            .addComponent(txtPass)
+                            .addComponent(btnEntrar, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -95,48 +107,70 @@ public class LoginFrame extends javax.swing.JFrame {
                 .addComponent(lblUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPass)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
                 .addComponent(statusBar, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setIncorrect(JLabel label) {
+        label.setForeground(Color.RED);
+        statusBar.setText("Corrige el campo marcado y vuelve a intentar");
+        statusBar.setForeground(Color.RED);
+    }
+    
+    private void reInitColors(){
+        lblUser.setForeground(Color.BLACK);
+        lblPass.setForeground(Color.BLACK);
+        statusBar.setForeground(Color.GRAY);
+    }
+
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        reInitColors();
         statusBar.setText("Validando...");
         //Se genera un objeto con los datos ingresados
         String username = txtUser.getText();
         String password = new String(txtPass.getPassword());
-        User user = new User(username, password, 0);
-        
-        //Se comprueba si es un usuario valido
-        try {
-            boolean valid = new UserController().isValidUser(user);
-            if(valid){
-                isGuess = false;
-                statusBar.setText("Ingresando...");
+
+        //Se evaluan los campos
+        if (username.trim().length() < 4)
+            setIncorrect(lblUser);        
+        else if(password.trim().length() < 4) 
+            setIncorrect(lblPass);        
+        else {
+            //Se comprueba si es un usuario valido
+            try {
+                //Usuario, Contraseña, Tipo de Usuario (0)
+                User user = new User(username, password, 0);
+            //El tipo de usuario se configura automaticamente
+
+                boolean valid = new UserController().isValidUser(user);
+                if (valid) {
+                    isGuess = false;
+                    statusBar.setText("Ingresando...");
+                } else {
+                    isGuess = true;
+                    statusBar.setText("Tus datos son incorrectos, intenta de nuevo");
+                }
+
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-            else {
-                isGuess = true;
-                statusBar.setText("Tus datos son incorrectos, intenta de nuevo");
-            }
-                
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(LoginFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnEntrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblPass;
     private javax.swing.JLabel lblUser;
+    private javax.swing.JPanel panel;
     private javax.swing.JLabel statusBar;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUser;

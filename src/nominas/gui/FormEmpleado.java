@@ -1,12 +1,8 @@
 package nominas.gui;
 
 import java.awt.Dimension;
-import java.awt.Font;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 import nominas.control.DeptoController;
 import nominas.control.EmpleadoController;
 import nominas.control.ListaNominaController;
@@ -16,26 +12,28 @@ import nominas.entity.Empleado;
 import nominas.entity.ListaNomina;
 import nominas.entity.Puesto;
 
-public class AltaEmpleado extends javax.swing.JFrame {
-    public AltaEmpleado() {
+public class FormEmpleado extends javax.swing.JInternalFrame {
+    public FormEmpleado() {
         //Se inicializan los componentes
         initComponents();
         //Se rellenan los puestos
         comboPuestos.removeAllItems();
         List<Puesto> puestos = new PuestoController().getAllPuestos();
-        for(int i = 0; i < puestos.size(); i++)
-            comboPuestos.addItem(puestos.get(i));
+        for (Puesto puesto : puestos) {
+            comboPuestos.addItem(puesto);
+        }
         //Se rellenan los departamentos
         comboDepartamentos.removeAllItems();
         List<Departamento> deptos = new DeptoController().getAllDepartamentos();
-        for(int i = 0; i < deptos.size(); i++)
-            comboDepartamentos.addItem(deptos.get(i));
+        for (Departamento depto : deptos) {
+            comboDepartamentos.addItem(depto);
+        }
         //Se rellena el combobox de las nominas
         comboNominas.removeAllItems();
         List<ListaNomina> nomis = new ListaNominaController().getAllTypesOfNomina();
-        for(int i = 0; i < nomis.size(); i++)
-            comboNominas.addItem(nomis.get(i));
-        //Se configuran los spinners
+        for (ListaNomina nomi : nomis) {
+            comboNominas.addItem(nomi);
+        }
         
         // Se ajusta el tamaño del calendario
         chooserDateIngreso.setCurrent(Calendar.getInstance());
@@ -78,7 +76,11 @@ public class AltaEmpleado extends javax.swing.JFrame {
         buttonSave = new javax.swing.JButton();
         statusBar = new javax.swing.JLabel();
 
+        setClosable(true);
+        setForeground(java.awt.Color.darkGray);
+        setIconifiable(true);
         setTitle("Nuevo Empleado");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/add_.png"))); // NOI18N
         setName("formRegistroEmpleado"); // NOI18N
 
         tabbedPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -261,13 +263,10 @@ public class AltaEmpleado extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tabbedPanel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(statusBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(tabbedPanel)
+                    .addComponent(statusBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -322,7 +321,9 @@ public class AltaEmpleado extends javax.swing.JFrame {
         txtIMSS.setText("");
         txtNombre.setText("");
         txtRFC.setText("");
-        
+        spinnerDias.setValue(1);
+        spinnerHoras.setValue(1);
+        spinnerSalario.setValue(0);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
