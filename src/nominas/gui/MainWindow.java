@@ -24,9 +24,13 @@ public class MainWindow extends javax.swing.JFrame {
         menuVer = new javax.swing.JMenu();
         mGralStat = new javax.swing.JMenuItem();
         menuEmpleados = new javax.swing.JMenu();
+        mViewEmployee = new javax.swing.JMenuItem();
         mAddEmployee = new javax.swing.JMenuItem();
-        mRemoveEmployee = new javax.swing.JMenuItem();
         menuReportes = new javax.swing.JMenu();
+        mModify = new javax.swing.JMenu();
+        mModifyDepartment = new javax.swing.JMenuItem();
+        mModifyPuesto = new javax.swing.JMenuItem();
+        mModifyNominas = new javax.swing.JMenuItem();
         menuAyuda = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
 
@@ -67,6 +71,15 @@ public class MainWindow extends javax.swing.JFrame {
 
         menuEmpleados.setText("Empleados");
 
+        mViewEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/view.png"))); // NOI18N
+        mViewEmployee.setText("Lista de Empleados");
+        mViewEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mViewEmployeeActionPerformed(evt);
+            }
+        });
+        menuEmpleados.add(mViewEmployee);
+
         mAddEmployee.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         mAddEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/add_.png"))); // NOI18N
         mAddEmployee.setText("Agregar Empleado");
@@ -77,14 +90,23 @@ public class MainWindow extends javax.swing.JFrame {
         });
         menuEmpleados.add(mAddEmployee);
 
-        mRemoveEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/remove_.png"))); // NOI18N
-        mRemoveEmployee.setText("Borrar Empleado");
-        menuEmpleados.add(mRemoveEmployee);
-
         menuBar.add(menuEmpleados);
 
         menuReportes.setText("Reportes");
         menuBar.add(menuReportes);
+
+        mModify.setText("Modificar");
+
+        mModifyDepartment.setText("Departamentos");
+        mModify.add(mModifyDepartment);
+
+        mModifyPuesto.setText("Puestos");
+        mModify.add(mModifyPuesto);
+
+        mModifyNominas.setText("Nóminas");
+        mModify.add(mModifyNominas);
+
+        menuBar.add(mModify);
 
         menuAyuda.setText("Ayuda");
 
@@ -115,13 +137,23 @@ public class MainWindow extends javax.swing.JFrame {
         desktopPane.add(f);
     }//GEN-LAST:event_mAddEmployeeActionPerformed
 
+    private void mViewEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mViewEmployeeActionPerformed
+        EmpleadosList e = new EmpleadosList();
+        e.setVisible(true);
+        desktopPane.add(e);
+    }//GEN-LAST:event_mViewEmployeeActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem mAddEmployee;
     private javax.swing.JMenuItem mGralStat;
-    private javax.swing.JMenuItem mRemoveEmployee;
+    private javax.swing.JMenu mModify;
+    private javax.swing.JMenuItem mModifyDepartment;
+    private javax.swing.JMenuItem mModifyNominas;
+    private javax.swing.JMenuItem mModifyPuesto;
+    private javax.swing.JMenuItem mViewEmployee;
     private javax.swing.JMenu menuAyuda;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuEmpleados;

@@ -1,5 +1,6 @@
 package nominas.control;
 
+import java.util.List;
 import nominas.entity.Empleado;
 import nominas.util.HibernateUtil;
 
@@ -10,5 +11,10 @@ public class EmpleadoController {
     
     public Object saveNewEmpleado(Empleado empleado) {
         return HibernateUtil.saveObject(empleado);
+    }
+    
+    public List<Empleado> getAllEmpleados(){
+        String hql = "From Empleado";
+        return HibernateUtil.executeHQLQuery(hql);
     }
 }
