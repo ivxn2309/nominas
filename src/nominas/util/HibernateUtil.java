@@ -42,7 +42,7 @@ public class HibernateUtil {
     public static Object saveObject(Object object){
         Session session = sessionFactory.openSession();
         Object objectId = 0;
-        try{            
+        try {            
             session.beginTransaction();
             objectId = session.save(object);
             session.getTransaction().commit();
@@ -54,6 +54,21 @@ public class HibernateUtil {
             session.close();
         }        
         return objectId;
+    }
+    
+    public static void removeObject(Object object){
+        Session session = sessionFactory.openSession();
+        try {
+            session.beginTransaction();
+            session.delete(object);
+            session.getTransaction().commit();
+        } 
+        catch (HibernateException he) {
+            System.err.println(he.getMessage());
+        }
+        finally {
+            session.close();
+        }
     }
     
     public static List executeHQLQuery(String hql) {

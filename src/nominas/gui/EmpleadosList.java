@@ -1,33 +1,69 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nominas.gui;
 
 import java.util.List;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import nominas.control.DeptoController;
 import nominas.control.EmpleadoController;
+import nominas.control.ListaNominaController;
+import nominas.control.PuestoController;
+import nominas.entity.Departamento;
 import nominas.entity.Empleado;
+import nominas.entity.ListaNomina;
+import nominas.entity.Puesto;
 
-/**
- *
- * @author Ivan Tovar
- */
 public class EmpleadosList extends javax.swing.JInternalFrame {
 
     public EmpleadosList() {
         initComponents();
         reloadEmployees();
+        listEmployees.addListSelectionListener(getListListener());        
+    }
+    
+    private ListSelectionListener getListListener(){
+        ListSelectionListener listener = (ListSelectionEvent e) -> {
+            Empleado emp = (Empleado)listEmployees.getSelectedValue();
+            loadEmployee(emp);
+        };
+        return listener;
     }
     
     private void reloadEmployees(){
         List<Empleado> lista = new EmpleadoController().getAllEmpleados();
         System.out.println(lista);
         listEmployees.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            @Override
             public int getSize() { return lista.size(); }
-            public Object getElementAt(int i) { return lista.get(i); }
+            @Override
+            public Empleado getElementAt(int i) { return lista.get(i); }
         });
+        
+        if (lista != null && lista.size() > 0){
+            listEmployees.setSelectedIndex(0);
+            loadEmployee(lista.get(0));
+        }
+    }
+    
+    private void loadEmployee(Empleado emp) {
+        //Para completar todos los campos con los datos del empleado
+        lblFolio.setText("Folio: " + emp.getId_empleado());
+        lblNombre.setText("Nombre: " + emp);
+        lblEmail.setText("Email: " + emp.getEmail());
+        lblRFC.setText("RFC: " + emp.getRfc());
+        lblIMSS.setText("IMSS: " + emp.getImss());
+        lblIngreso.setText("Ingreso: " + emp.getFechaIngreso());
+        lblHoras.setText("Horas al día: " + emp.getHoras_dia());
+        lblDias.setText("Dias de Jornada: " + emp.getDias_jornada());
+        lblSalario.setText("Salario diario: " + emp.getSalario());
+        //Datos provenientes de campos foraneos
+        Departamento depto = new DeptoController().getDepartamento(emp.getDepartamento());
+        lblDepa.setText("Departamento: " + depto);
+        
+        Puesto puesto = new PuestoController().getPuesto(emp.getPuesto());
+        lblPuesto.setText("Puesto: " + puesto);
+        
+        ListaNomina nomina = new ListaNominaController().getListaNomina(emp.getNomina());
+        lblNomina.setText("Nómina: " + nomina);
     }
     
     @SuppressWarnings("unchecked")
@@ -54,6 +90,7 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
         lblSalario = new javax.swing.JLabel();
         btnBorrar = new javax.swing.JButton();
         statusBar = new javax.swing.JLabel();
+        btnActualizar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -163,6 +200,11 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
         );
 
         btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelDataLayout = new javax.swing.GroupLayout(panelData);
         panelData.setLayout(panelDataLayout);
@@ -203,6 +245,13 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
         statusBar.setForeground(new java.awt.Color(102, 102, 102));
         statusBar.setText("Listo.");
 
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -211,7 +260,9 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panelData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -226,9 +277,12 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(lblEmp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(scrollPane))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(statusBar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -237,8 +291,21 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        reloadEmployees();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        EmpleadoController control = new EmpleadoController();
+        Empleado empleado = (Empleado)listEmployees.getSelectedValue();
+        listEmployees.setSelectedIndex(0);
+        control.deleteEmpleado(empleado);
+        reloadEmployees();        
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JLabel lblDepa;
     private javax.swing.JLabel lblDias;

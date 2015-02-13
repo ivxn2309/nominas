@@ -10,7 +10,15 @@ public class ListaNominaController {
     }
     
     public List<ListaNomina> getAllTypesOfNomina(){
-        String hql = "From ListaNomina";
+        String hql = "FROM ListaNomina";
         return HibernateUtil.executeHQLQuery(hql);
+    }
+    
+    public ListaNomina getListaNomina(int idx){
+        String hql = "FROM ListaNomina WHERE id='" + idx + "'";
+        List<ListaNomina> result = HibernateUtil.executeHQLQuery(hql);
+        if(result != null && result.size() > 0)
+            return result.get(0);
+        return null;
     }
 }

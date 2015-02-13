@@ -13,6 +13,10 @@ public class EmpleadoController {
         return HibernateUtil.saveObject(empleado);
     }
     
+    public void deleteEmpleado(Empleado empleado) {
+        HibernateUtil.removeObject(empleado);
+    }
+    
     public List<Empleado> getAllEmpleados(){
         String hql = "From Empleado";
         return HibernateUtil.executeHQLQuery(hql);

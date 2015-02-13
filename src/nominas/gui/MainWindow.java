@@ -9,7 +9,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     public MainWindow() throws IOException {
         //this.setIconImage(ImageIO.read(new File("res/icon.png"))); Toolkit.getDefaultToolkit().getImage("Icon.png")
-        this.setIconImage(Toolkit.getDefaultToolkit().getImage("res/icon.png")); 
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage("res/icon.png"));
         initComponents();
     }
 
@@ -45,11 +45,11 @@ public class MainWindow extends javax.swing.JFrame {
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 722, Short.MAX_VALUE)
+            .addGap(0, 946, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 408, Short.MAX_VALUE)
+            .addGap(0, 508, Short.MAX_VALUE)
         );
 
         menuBar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N

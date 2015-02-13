@@ -13,4 +13,12 @@ public class PuestoController {
         String hql = "From Puesto";
         return HibernateUtil.executeHQLQuery(hql);
     }
+    
+    public Puesto getPuesto(int idx){
+        String hql = "FROM Puesto WHERE id_puesto='" + idx + "'";
+        List<Puesto> result = HibernateUtil.executeHQLQuery(hql);
+        if(result != null && result.size() > 0)
+            return result.get(0);
+        return null;
+    }
 }
