@@ -17,13 +17,15 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
     public EmpleadosList() {
         initComponents();
         reloadEmployees();
-        listEmployees.addListSelectionListener(getListListener());        
+        listEmployees.addListSelectionListener(getListListener());
+        unhideLabels(false);
     }
     
     private ListSelectionListener getListListener(){
         ListSelectionListener listener = (ListSelectionEvent e) -> {
             Empleado emp = (Empleado)listEmployees.getSelectedValue();
-            loadEmployee(emp);
+            if(emp != null)
+                loadEmployee(emp);
         };
         return listener;
     }
@@ -31,20 +33,12 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
     private void reloadEmployees(){
         List<Empleado> lista = new EmpleadoController().getAllEmpleados();
         System.out.println(lista);
-        listEmployees.setModel(new javax.swing.AbstractListModel() {
-            @Override
-            public int getSize() { return lista.size(); }
-            @Override
-            public Empleado getElementAt(int i) { return lista.get(i); }
-        });
-        
-        if (lista != null && lista.size() > 0){
-            listEmployees.setSelectedIndex(0);
-            loadEmployee(lista.get(0));
-        }
+        listEmployees.setListData(lista.toArray());
+        unhideLabels(false);
     }
     
     private void loadEmployee(Empleado emp) {
+        unhideLabels(true);
         //Para completar todos los campos con los datos del empleado
         lblFolio.setText("Folio: " + emp.getId_empleado());
         lblNombre.setText("Nombre: " + emp);
@@ -64,6 +58,10 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
         
         ListaNomina nomina = new ListaNominaController().getListaNomina(emp.getNomina());
         lblNomina.setText("Nómina: " + nomina);
+    }
+    
+    private void unhideLabels(boolean visible){
+        panelData.setVisible(visible);        
     }
     
     @SuppressWarnings("unchecked")
@@ -298,7 +296,6 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
         EmpleadoController control = new EmpleadoController();
         Empleado empleado = (Empleado)listEmployees.getSelectedValue();
-        listEmployees.setSelectedIndex(0);
         control.deleteEmpleado(empleado);
         reloadEmployees();        
     }//GEN-LAST:event_btnBorrarActionPerformed

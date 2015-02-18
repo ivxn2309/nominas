@@ -1,9 +1,7 @@
 package nominas.gui;
 
 import java.awt.Toolkit;
-import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 
 public class MainWindow extends javax.swing.JFrame {
 
@@ -45,11 +43,11 @@ public class MainWindow extends javax.swing.JFrame {
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 946, Short.MAX_VALUE)
+            .addGap(0, 1082, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
+            .addGap(0, 542, Short.MAX_VALUE)
         );
 
         menuBar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
@@ -111,6 +109,11 @@ public class MainWindow extends javax.swing.JFrame {
         menuAyuda.setText("Ayuda");
 
         jMenuItem2.setText("Acerca de...");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         menuAyuda.add(jMenuItem2);
 
         menuBar.add(menuAyuda);
@@ -142,6 +145,12 @@ public class MainWindow extends javax.swing.JFrame {
         e.setVisible(true);
         desktopPane.add(e);
     }//GEN-LAST:event_mViewEmployeeActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        About a = new About();
+        a.setVisible(true);
+        desktopPane.add(a);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;

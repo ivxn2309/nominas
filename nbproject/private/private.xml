@@ -5,10 +5,8 @@
         <group>
             <file>file:/C:/Users/Ivan%20Tovar/Documents/NetBeansProjects/Nominas/src/nominas/gui/MainWindow.java</file>
             <file>file:/C:/Users/Ivan%20Tovar/Documents/NetBeansProjects/Nominas/src/nominas/control/EmpleadoController.java</file>
-            <file>file:/C:/Users/Ivan%20Tovar/Documents/NetBeansProjects/Nominas/src/Nominas.java</file>
+            <file>file:/C:/Users/Ivan%20Tovar/Documents/NetBeansProjects/Nominas/src/nominas/gui/About.java</file>
             <file>file:/C:/Users/Ivan%20Tovar/Documents/NetBeansProjects/Nominas/src/nominas/gui/EmpleadosList.java</file>
-            <file>file:/C:/Users/Ivan%20Tovar/Documents/NetBeansProjects/Nominas/src/nominas/gui/FormEmpleado.java</file>
-            <file>file:/C:/Users/Ivan%20Tovar/Documents/NetBeansProjects/Nominas/src/nominas/entity/Empleado.java</file>
         </group>
     </open-files>
 </project-private>

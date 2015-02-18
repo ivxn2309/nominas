@@ -159,3 +159,15 @@ INSERT INTO ListaNominas VALUES(12, "Ecologia Hormiguitas");
 INSERT INTO ListaNominas VALUES(13, "Dif Municipal");
 INSERT INTO ListaNominas VALUES(14, "Casa De Cultura");
 INSERT INTO ListaNominas VALUES(15, "Pensionados");
+
+-- -----------------------------------------------------------
+-- Testing
+-- -----------------------------------------------------------
+INSERT INTO `nominas`.`empleados` 
+(`id_empleado`, `nombre`, `apellido`, `email`, `rfc`, `imss`, `departamento`, `puesto`, `fecha_ingreso`, `horas_dia`, `dias_jornada`, `nomina`, `salario`) 
+VALUES 
+(NULL, 'Juan', 'Perez', 'juanito@yahoo.com', 'PEPE12345678', '234567890-1', '5', '1', '2015-01-12', '5', '15', '7', '150'),
+(NULL, 'Lupe', 'Gonzales', 'lupita@yahoo.com', 'GPEL12345678', '234567890-1', '4', '8', '2015-01-12', '8', '14', '2', '100'),
+(NULL, 'Pedro', 'Stalling', 'pedrito@yahoo.com', 'STAP12345678', '234567890-1', '6', '7', '2015-01-12', '8', '10', '7', '110'),
+(NULL, 'Adrian', 'Fernandez', 'adri@yahoo.com', 'FEAS12345678', '234567890-1', '5', '10', '2015-01-12', '8', '15', '3', '120'), 
+(NULL, 'Filigonio', 'Garcia', 'filiga@yahoo.com', 'GAFI123456789', '23456789-3', '8', '5', '2014-08-05', '8', '10', '2', '100');
