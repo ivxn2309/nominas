@@ -103,6 +103,7 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        listEmployees.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         scrollPane.setViewportView(listEmployees);
 
         lblEmp.setText("Lista de Empleados");

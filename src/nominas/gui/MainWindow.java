@@ -4,8 +4,14 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.List;
 import javax.swing.JOptionPane;
+import nominas.control.DeptoController;
 import nominas.control.EmpleadoController;
+import nominas.control.ListaNominaController;
+import nominas.control.PuestoController;
+import nominas.entity.Departamento;
 import nominas.entity.Empleado;
+import nominas.entity.ListaNomina;
+import nominas.entity.Puesto;
 
 public class MainWindow extends javax.swing.JFrame {
 
@@ -120,14 +126,29 @@ public class MainWindow extends javax.swing.JFrame {
 
         mModifyDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/department.png"))); // NOI18N
         mModifyDepartment.setText("Departamentos");
+        mModifyDepartment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mModifyDepartmentActionPerformed(evt);
+            }
+        });
         mModify.add(mModifyDepartment);
 
         mModifyPuesto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/puesto.png"))); // NOI18N
         mModifyPuesto.setText("Puestos");
+        mModifyPuesto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mModifyPuestoActionPerformed(evt);
+            }
+        });
         mModify.add(mModifyPuesto);
 
         mModifyNominas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/coins.png"))); // NOI18N
         mModifyNominas.setText("Nóminas");
+        mModifyNominas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mModifyNominasActionPerformed(evt);
+            }
+        });
         mModify.add(mModifyNominas);
 
         menuBar.add(mModify);
@@ -165,29 +186,53 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAddEmployeeActionPerformed
-        FormEmpleado f = new FormEmpleado();
-        f.setVisible(true);
-        desktopPane.add(f);
-        f.moveToFront();
+        FormEmpleado employeeForm = new FormEmpleado();
+        employeeForm.setVisible(true);
+        desktopPane.add(employeeForm);
+        employeeForm.moveToFront();
     }//GEN-LAST:event_mAddEmployeeActionPerformed
 
     private void mViewEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mViewEmployeeActionPerformed
-        EmpleadosList e = new EmpleadosList(this);
-        e.setVisible(true);
-        desktopPane.add(e);
-        e.moveToFront();
+        EmpleadosList employeeList = new EmpleadosList(this);
+        employeeList.setVisible(true);
+        desktopPane.add(employeeList);
+        employeeList.moveToFront();
     }//GEN-LAST:event_mViewEmployeeActionPerformed
 
     private void mAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mAboutActionPerformed
-        About a = new About();
-        a.setVisible(true);
-        desktopPane.add(a);
-        a.moveToFront();
+        About about = new About();
+        about.setVisible(true);
+        desktopPane.add(about);
+        about.moveToFront();
     }//GEN-LAST:event_mAboutActionPerformed
 
     private void mExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_mExitActionPerformed
+
+    private void mModifyDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mModifyDepartmentActionPerformed
+        List<Departamento> lista = new DeptoController().getAllDepartamentos();
+        ComponentModifier compModifierGUI = new ComponentModifier(lista, "Lista de Departamentos");
+        compModifierGUI.setVisible(true);
+        desktopPane.add(compModifierGUI);
+        compModifierGUI.moveToFront();
+    }//GEN-LAST:event_mModifyDepartmentActionPerformed
+
+    private void mModifyPuestoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mModifyPuestoActionPerformed
+        List<Puesto> lista = new PuestoController().getAllPuestos();
+        ComponentModifier compModifierGUI = new ComponentModifier(lista, "Lista de Puestos");
+        compModifierGUI.setVisible(true);
+        desktopPane.add(compModifierGUI);
+        compModifierGUI.moveToFront();
+    }//GEN-LAST:event_mModifyPuestoActionPerformed
+
+    private void mModifyNominasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mModifyNominasActionPerformed
+        List<ListaNomina> lista = new ListaNominaController().getAllTypesOfNomina();
+        ComponentModifier compModifierGUI = new ComponentModifier(lista, "Lista de Nominas");
+        compModifierGUI.setVisible(true);
+        desktopPane.add(compModifierGUI);
+        compModifierGUI.moveToFront();
+    }//GEN-LAST:event_mModifyNominasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;

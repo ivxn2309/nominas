@@ -59,4 +59,5 @@ public class Departamento implements Serializable {
     public String toString() {
         return nombre;
     }
+    
 }

@@ -9,6 +9,14 @@ public class ListaNominaController {
     public ListaNominaController() {
     }
     
+    public void saveNewNomina(ListaNomina nomina){
+        HibernateUtil.saveObject(nomina);
+    }
+    
+    public void updateNomina(ListaNomina nomina){
+        HibernateUtil.updateObject(nomina);
+    }
+    
     public List<ListaNomina> getAllTypesOfNomina(){
         String hql = "FROM ListaNomina";
         return HibernateUtil.executeHQLQuery(hql);

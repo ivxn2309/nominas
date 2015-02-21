@@ -8,6 +8,14 @@ public class DeptoController {
     public DeptoController() {
     }
     
+    public void saveNewDepartamento(Departamento departamento){
+        HibernateUtil.saveObject(departamento);
+    }
+    
+    public void updateDepartamento(Departamento departamento){
+        HibernateUtil.updateObject(departamento);
+    }
+    
     public List<Departamento> getAllDepartamentos(){
         String hql = "FROM Departamento";
         return HibernateUtil.executeHQLQuery(hql);

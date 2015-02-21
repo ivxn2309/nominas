@@ -9,6 +9,14 @@ public class PuestoController {
     public PuestoController() {
     }
     
+    public void saveNewPuesto(Puesto puesto){
+        HibernateUtil.saveObject(puesto);
+    }
+    
+    public void updatePuesto(Puesto puesto){
+        HibernateUtil.updateObject(puesto);
+    }
+    
     public List<Puesto> getAllPuestos(){
         String hql = "From Puesto";
         return HibernateUtil.executeHQLQuery(hql);
