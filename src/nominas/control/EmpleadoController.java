@@ -13,6 +13,10 @@ public class EmpleadoController {
         return HibernateUtil.saveObject(empleado);
     }
     
+    public void updateEmpleado(Empleado empleado) {
+        HibernateUtil.updateObject(empleado);
+    }
+    
     public void deleteEmpleado(Empleado empleado) {
         HibernateUtil.removeObject(empleado);
     }

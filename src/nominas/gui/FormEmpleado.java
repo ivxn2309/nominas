@@ -13,6 +13,8 @@ import nominas.entity.ListaNomina;
 import nominas.entity.Puesto;
 
 public class FormEmpleado extends javax.swing.JInternalFrame {
+    private boolean isNewEmployee = true;
+    private Empleado empleado = null;
     public FormEmpleado() {
         //Se inicializan los componentes
         initComponents();
@@ -42,6 +44,82 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         size.width += 90;
         chooserDateIngreso.setCalendarPreferredSize(size);
     }
+    
+    public FormEmpleado(Empleado empleado) {
+        //Se inicializan los componentes
+        initComponents();
+        isNewEmployee = false;
+        this.empleado = empleado;
+        buttonSave.setText("Actualizar");
+        //Se cargan los datos del empleado
+        loadEmployee(empleado);
+    }
+    
+    private void loadEmployee(Empleado empleado){
+        //Se rellenan los puestos
+        comboPuestos.removeAllItems();
+        List<Puesto> puestos = new PuestoController().getAllPuestos();
+        for (Puesto puesto : puestos) {
+            comboPuestos.addItem(puesto);
+        }
+        
+        //Se selecciona el puesto adecuado
+        comboPuestos.setSelectedItem(
+            new PuestoController().getPuesto(
+                    empleado.getPuesto()
+            )
+        );
+        
+        //Se rellenan los departamentos
+        comboDepartamentos.removeAllItems();
+        List<Departamento> deptos = new DeptoController().getAllDepartamentos();
+        for (Departamento depto : deptos) {
+            comboDepartamentos.addItem(depto);
+        }
+        
+        //Se selecciona el departamento adecuado
+        comboDepartamentos.setSelectedItem(
+            new DeptoController().getDepartamento(
+                    empleado.getDepartamento()
+            )
+        );
+        
+        //Se rellena el combobox de las nominas
+        comboNominas.removeAllItems();
+        List<ListaNomina> nomis = new ListaNominaController().getAllTypesOfNomina();
+        for (ListaNomina nomi : nomis) {
+            comboNominas.addItem(nomi);
+        }
+        
+        //Se selecciona el departamento adecuado
+        comboNominas.setSelectedItem(
+            new ListaNominaController().getListaNomina(
+                    empleado.getNomina()
+            )
+        );
+        
+        // Se ajusta el tamaño del calendario
+        Dimension size = chooserDateIngreso.getCalendarPreferredSize();
+        size.height += 35;
+        size.width += 90;
+        chooserDateIngreso.setCalendarPreferredSize(size);
+        
+        //Se ajusta la fecha mostrada
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(empleado.getFechaIngreso());
+        chooserDateIngreso.setCurrent(cal);
+        
+        //Se completan los campos de texto con los datos del empleado
+        txtNombre.setText(empleado.getNombre());
+        txtApellido.setText(empleado.getApellido());
+        txtEmail.setText(empleado.getEmail());
+        txtRFC.setText(empleado.getRfc());
+        txtIMSS.setText(empleado.getImss());
+        spinnerDias.setValue(empleado.getDias_jornada());
+        spinnerHoras.setValue(empleado.getHoras_dia());
+        spinnerSalario.setValue(empleado.getSalario());
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -247,7 +325,7 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
 
         tabbedPanel.addTab("Datos de Trabajo", panelTrabajo);
 
-        buttonSave.setText("Registrar");
+        buttonSave.setText("Crear");
         buttonSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSaveActionPerformed(evt);
@@ -290,7 +368,10 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSaveActionPerformed
-        Empleado empleado = new Empleado();
+        //Si es empleado nuevo, se crea una nueva instancia
+        if(isNewEmployee) empleado = new Empleado();
+        //De lo contrario se utiliza el empleado obtenido
+        
         if(txtNombre.getText().trim().length() < 2)
             statusBar.setText("Debes introducir un nombre válido.");
         else if(txtApellido.getText().trim().length() < 2)
@@ -303,12 +384,20 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
             empleado.setRfc(txtRFC.getText());
             empleado.setHoras_dia((Integer)spinnerHoras.getValue());
             empleado.setDias_jornada((Integer)spinnerDias.getValue());
-            empleado.setSalario(((Double)spinnerSalario.getValue()).intValue());
+            empleado.setSalario(((Integer)spinnerSalario.getValue()));
             empleado.setFechaIngreso(chooserDateIngreso.getSelectedDate().getTime());
             empleado.setDepartamento(((Departamento)comboDepartamentos.getSelectedItem()).getId_dep());
             empleado.setPuesto(((Puesto)comboPuestos.getSelectedItem()).getId_puesto());
             empleado.setNomina(((ListaNomina)comboNominas.getSelectedItem()).getId());
-            new EmpleadoController().saveNewEmpleado(empleado).toString();
+            
+            //Si es nuevo empleado, se guarda un nuevo registro
+            if(isNewEmployee)
+                new EmpleadoController().saveNewEmpleado(empleado);
+            //De lo contrario se actualiza
+            else
+                new EmpleadoController().updateEmpleado(empleado);
+            
+            //Se notifica, se limpia, y se cierra
             statusBar.setText("Empleado guardado correctamente");
             clearFields();
             this.setVisible(false);

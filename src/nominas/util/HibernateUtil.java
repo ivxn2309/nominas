@@ -56,6 +56,21 @@ public class HibernateUtil {
         return objectId;
     }
     
+    public static void updateObject(Object object){
+        Session session = sessionFactory.openSession();
+        try {            
+            session.beginTransaction();
+            session.saveOrUpdate(object);
+            session.getTransaction().commit();
+        }
+        catch (HibernateException he) {
+            System.err.println(he.getMessage());
+        }
+        finally {
+            session.close();
+        }
+    }
+    
     public static void removeObject(Object object){
         Session session = sessionFactory.openSession();
         try {

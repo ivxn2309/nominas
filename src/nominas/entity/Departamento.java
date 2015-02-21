@@ -1,6 +1,7 @@
 package nominas.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Departamento implements Serializable {
     private int id_dep;
@@ -30,8 +31,30 @@ public class Departamento implements Serializable {
         this.nombre = nombre;
     }
 
-    
-    
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Departamento other = (Departamento) obj;
+        if (this.id_dep != other.id_dep) {
+            return false;
+        }
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         return nombre;
