@@ -20,7 +20,6 @@ public class ComponentModifier extends javax.swing.JInternalFrame {
         listComponents.addListSelectionListener(getListListener());
         listComponents.setListData(objs.toArray());
         this.setTitle(title);
-        btnAdd.setEnabled(false);
         btnDelete.setEnabled(false);
         btnRename.setEnabled(false);
     }
@@ -28,12 +27,10 @@ public class ComponentModifier extends javax.swing.JInternalFrame {
     private ListSelectionListener getListListener(){
         ListSelectionListener listener = (ListSelectionEvent e) -> {
             if(listComponents.isSelectionEmpty()){
-                btnAdd.setEnabled(false);
                 btnDelete.setEnabled(false);
                 btnRename.setEnabled(false);
             }
             else {
-                btnAdd.setEnabled(true);
                 btnDelete.setEnabled(true);
                 btnRename.setEnabled(true);
             }
@@ -45,7 +42,7 @@ public class ComponentModifier extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPane = new javax.swing.JScrollPane();
         listComponents = new javax.swing.JList();
         btnDelete = new javax.swing.JButton();
         btnRename = new javax.swing.JButton();
@@ -55,7 +52,7 @@ public class ComponentModifier extends javax.swing.JInternalFrame {
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/settings.png"))); // NOI18N
 
         listComponents.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(listComponents);
+        scrollPane.setViewportView(listComponents);
 
         btnDelete.setText("Borrar");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +83,7 @@ public class ComponentModifier extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -100,7 +97,7 @@ public class ComponentModifier extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
@@ -113,26 +110,30 @@ public class ComponentModifier extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        Object obj = listComponents.getSelectedValue();
-        HibernateUtil.removeObject(obj);
-        List list = null;
-        if(obj.getClass().getSimpleName().equals("Departamento"))
-            list = new DeptoController().getAllDepartamentos();
-        else if(obj.getClass().getSimpleName().equals("Puesto"))
-            list = new PuestoController().getAllPuestos();
-        else if(obj.getClass().getSimpleName().equals("ListaNomina"))
-            list = new ListaNominaController().getAllTypesOfNomina();
-        listComponents.setListData(list.toArray());
+        int ans = JOptionPane.showConfirmDialog(this, "Estas seguro de borrar", "Confirma", 2, 1);
+        if(ans == 0){
+            Object obj = listComponents.getSelectedValue();
+            HibernateUtil.removeObject(obj);
+            List list = null;
+            if(obj.getClass().getSimpleName().equals("Departamento"))
+                list = new DeptoController().getAllDepartamentos();
+            else if(obj.getClass().getSimpleName().equals("Puesto"))
+                list = new PuestoController().getAllPuestos();
+            else if(obj.getClass().getSimpleName().equals("ListaNomina"))
+                list = new ListaNominaController().getAllTypesOfNomina();
+            listComponents.setListData(list.toArray());
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenameActionPerformed
         Object obj = listComponents.getSelectedValue();
         String name = JOptionPane.showInputDialog(this, "Ingresa el nuevo nombre para este componente", 
                 obj.toString());
-        if(name.length() < 3) JOptionPane.showMessageDialog(this, 
-                "El valor ingresado es demasiado corto", "Nombre inválido", 0);
         List list = null;
-        if(obj.getClass().getSimpleName().equals("Departamento")){
+        if(name == null);
+        else if(name.length() < 3) JOptionPane.showMessageDialog(this, 
+                "El valor ingresado es demasiado corto", "Nombre inválido", 0);        
+        else if(obj.getClass().getSimpleName().equals("Departamento")){
             Departamento dpto = (Departamento)obj;
             dpto.setNombre(name);
             new DeptoController().updateDepartamento(dpto);
@@ -150,11 +151,45 @@ public class ComponentModifier extends javax.swing.JInternalFrame {
             new ListaNominaController().updateNomina(nomina);
             list = new ListaNominaController().getAllTypesOfNomina();
         }
-        listComponents.setListData(list.toArray());
+        if(list != null)
+            listComponents.setListData(list.toArray());
     }//GEN-LAST:event_btnRenameActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+        List list = null;
+        String name = JOptionPane.showInputDialog(this, "Ingresa el nuevo nombre para este componente", "");
+        //Se obtiene el objeto seleccionado para ver si es Departamento, Puesto o Nomina
+        listComponents.setSelectedIndex(listComponents.getFirstVisibleIndex());
+        Object obj = null;
+        if(!listComponents.isSelectionEmpty())
+            obj = listComponents.getSelectedValue();
+        //Se valida el nuevo nombre
+        if(name == null || obj == null);
+        else if(name.length() < 3) JOptionPane.showMessageDialog(this, 
+            "El valor ingresado es demasiado corto", "Nombre inválido", 0);
+        //Se verifica de que clase es y se cre el objeto nuevo
+        else if(obj.getClass().getSimpleName().equals("Departamento")){
+            Departamento dpto = new Departamento();
+            dpto.setNombre(name);
+            new DeptoController().saveNewDepartamento(dpto);
+            list = new DeptoController().getAllDepartamentos();
+        }
+        else if(obj.getClass().getSimpleName().equals("Puesto")){
+            Puesto puesto = new Puesto();
+            puesto.setNombre(name);
+            new PuestoController().saveNewPuesto(puesto);
+            list = new PuestoController().getAllPuestos();
+        }
+        else if(obj.getClass().getSimpleName().equals("ListaNomina")){
+            ListaNomina nomina = new ListaNomina();
+            nomina.setNombre(name);
+            new ListaNominaController().saveNewNomina(nomina);
+            list = new ListaNominaController().getAllTypesOfNomina();
+        }
+        if(list != null){
+            listComponents.setListData(list.toArray());
+            listComponents.setSelectedIndex(list.size()-1);
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
 
@@ -162,7 +197,7 @@ public class ComponentModifier extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnRename;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList listComponents;
+    private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
 }

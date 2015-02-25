@@ -13,6 +13,18 @@ CREATE USER 'gestor_nominas' IDENTIFIED BY PASSWORD '*915B119C8FFE36DE8E242DD40A
 CREATE DATABASE `nominas` CHARACTER SET utf8 COLLATE utf8_general_ci;
 GRANT ALL ON `nominas`.* TO `gestor_nominas`@localhost IDENTIFIED BY 'nomina2015';
 FLUSH PRIVILEGES;
+
+-- ------------------------------------------------
+-- DROPS
+-- ------------------------------------------------
+DROP TABLE IF EXISTS Perecepciones;
+DROP TABLE IF EXISTS Deducciones;
+DROP TABLE IF EXISTS Empleados;
+DROP TABLE IF EXISTS ListaNominas;
+DROP TABLE IF EXISTS Puestos;
+DROP TABLE IF EXISTS Departamentos;
+DROP TABLE IF EXISTS User;
+
 -- ------------------------------------------------
 -- Usuario
 -- ------------------------------------------------
@@ -55,7 +67,7 @@ CREATE TABLE IF NOT EXISTS ListaNominas (
 -- ------------------------------------------------
 DROP TABLE IF EXISTS Empleados;
 CREATE TABLE IF NOT EXISTS Empleados (
-    id_empleado INT(6) NOT NULL AUTO_INCREMENT,
+    id_empleado INT(8) NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
     email VARCHAR(100),
@@ -67,12 +79,41 @@ CREATE TABLE IF NOT EXISTS Empleados (
     horas_dia INT(2),
     dias_jornada INT(2),
     nomina INT(4),
-    salario INT(5),
+    salario DECIMAL(8,2),
     PRIMARY KEY(id_empleado),
     FOREIGN KEY(departamento) REFERENCES Departamentos(id_dep),
     FOREIGN KEY(puesto) REFERENCES Puestos(id_puesto),
     FOREIGN KEY(nomina) REFERENCES ListaNominas(id)
 );
+
+-- ------------------------------------------------
+-- Deducciones
+-- ------------------------------------------------
+DROP TABLE IF EXISTS Deducciones;
+CREATE TABLE IF NOT EXISTS Deducciones (
+    id_deduccion INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    empleado INT(8) NOT NULL,
+    cantidad DECIMAL(8,2) NOT NULL,
+    fecha DATE NOT NULL,
+    PRIMARY KEY(id_deduccion),
+    FOREIGN KEY(empleado) REFERENCES Empleados(id_empleado)
+);
+
+-- ------------------------------------------------
+-- Perecepciones
+-- ------------------------------------------------
+DROP TABLE IF EXISTS Perecepciones;
+CREATE TABLE IF NOT EXISTS Perecepciones (
+    id_percepcion INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    empleado INT(8) NOT NULL,
+    cantidad DECIMAL(8,2) NOT NULL,
+    fecha DATE NOT NULL,
+    PRIMARY KEY(id_percepcion),
+    FOREIGN KEY(empleado) REFERENCES Empleados(id_empleado)
+);
+
 -- ------------------------------------------------
 -- Volcado de datos
 -- ------------------------------------------------
@@ -167,7 +208,11 @@ INSERT INTO `nominas`.`empleados`
 (`id_empleado`, `nombre`, `apellido`, `email`, `rfc`, `imss`, `departamento`, `puesto`, `fecha_ingreso`, `horas_dia`, `dias_jornada`, `nomina`, `salario`) 
 VALUES 
 (NULL, 'Juan', 'Perez', 'juanito@yahoo.com', 'PEPE12345678', '234567890-1', '5', '1', '2015-01-12', '5', '15', '7', '150'),
-(NULL, 'Lupe', 'Gonzales', 'lupita@yahoo.com', 'GPEL12345678', '234567890-1', '4', '8', '2015-01-12', '8', '14', '2', '100'),
-(NULL, 'Pedro', 'Stalling', 'pedrito@yahoo.com', 'STAP12345678', '234567890-1', '6', '7', '2015-01-12', '8', '10', '7', '110'),
-(NULL, 'Adrian', 'Fernandez', 'adri@yahoo.com', 'FEAS12345678', '234567890-1', '5', '10', '2015-01-12', '8', '15', '3', '120'), 
-(NULL, 'Filigonio', 'Garcia', 'filiga@yahoo.com', 'GAFI123456789', '23456789-3', '8', '5', '2014-08-05', '8', '10', '2', '100');
+(NULL, 'Lupe', 'Gonzales', 'lupita@yahoo.com', 'GPEL12345678', '234517890-1', '4', '8', '2015-01-12', '8', '14', '2', '100'),
+(NULL, 'Pedro', 'Stalling', 'pedrito@yahoo.com', 'STAP12345678', '233567890-1', '6', '7', '2015-01-12', '8', '10', '7', '110'),
+(NULL, 'Adrian', 'Fernandez', 'adri@yahoo.com', 'FEAS12345678', '2343267890-1', '5', '10', '2015-01-12', '8', '15', '3', '120'),
+(NULL, 'Jorge', 'Jimenez', 'george@yahoo.com', 'JITJ12345678', '234987890-1', '4', '10', '2015-01-12', '8', '15', '3', '120'),
+(NULL, 'Pepe', 'Veraz', 'pepitoveraz@yahoo.com', 'VEPE12345678', '234501790-1', '1', '10', '2015-01-12', '8', '15', '3', '120'), 
+(NULL, 'Lorenzo', 'Morales', 'lencho_mora@yahoo.com', 'MOLO12345678', '385567890-1', '1', '10', '2015-01-12', '8', '5', '3', '120'), 
+(NULL, 'Ivan', 'Tovar', 'ivxn2309@hotmail.com', 'TOVF12345678', '234560967-1', '5', '10', '2015-01-12', '8', '15', '5', '190'), 
+(NULL, 'Filigonio', 'Garcia', 'filiga@yahoo.com', 'GAFI123456789', '15356689-3', '8', '5', '2014-08-05', '8', '10', '2', '100');
