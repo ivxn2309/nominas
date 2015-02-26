@@ -18,7 +18,7 @@ public class Empleado implements Serializable {
     private int horas_dia;
     private int dias_jornada;
     private int nomina;
-    private int salario;
+    private double salario;
 
     public Empleado() {
     }
@@ -135,11 +135,11 @@ public class Empleado implements Serializable {
         this.nomina = nomina;
     }
 
-    public int getSalario() {
+    public double getSalario() {
         return salario;
     }
 
-    public void setSalario(int salario) {
+    public void setSalario(double salario) {
         this.salario = salario;
     }
 

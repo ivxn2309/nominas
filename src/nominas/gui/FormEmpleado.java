@@ -21,21 +21,21 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         //Se rellenan los puestos
         comboPuestos.removeAllItems();
         List<Puesto> puestos = new PuestoController().getAllPuestos();
-        for (Puesto puesto : puestos) {
+        puestos.stream().forEach((puesto) -> {
             comboPuestos.addItem(puesto);
-        }
+        });
         //Se rellenan los departamentos
         comboDepartamentos.removeAllItems();
         List<Departamento> deptos = new DeptoController().getAllDepartamentos();
-        for (Departamento depto : deptos) {
+        deptos.stream().forEach((depto) -> {
             comboDepartamentos.addItem(depto);
-        }
+        });
         //Se rellena el combobox de las nominas
         comboNominas.removeAllItems();
         List<ListaNomina> nomis = new ListaNominaController().getAllTypesOfNomina();
-        for (ListaNomina nomi : nomis) {
+        nomis.stream().forEach((nomi) -> {
             comboNominas.addItem(nomi);
-        }
+        });
         
         // Se ajusta el tamaño del calendario
         chooserDateIngreso.setCurrent(Calendar.getInstance());
@@ -59,9 +59,9 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         //Se rellenan los puestos
         comboPuestos.removeAllItems();
         List<Puesto> puestos = new PuestoController().getAllPuestos();
-        for (Puesto puesto : puestos) {
+        puestos.stream().forEach((puesto) -> {
             comboPuestos.addItem(puesto);
-        }
+        });
         
         //Se selecciona el puesto adecuado
         comboPuestos.setSelectedItem(
@@ -73,9 +73,9 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         //Se rellenan los departamentos
         comboDepartamentos.removeAllItems();
         List<Departamento> deptos = new DeptoController().getAllDepartamentos();
-        for (Departamento depto : deptos) {
+        deptos.stream().forEach((depto) -> {
             comboDepartamentos.addItem(depto);
-        }
+        });
         
         //Se selecciona el departamento adecuado
         comboDepartamentos.setSelectedItem(
@@ -87,9 +87,9 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         //Se rellena el combobox de las nominas
         comboNominas.removeAllItems();
         List<ListaNomina> nomis = new ListaNominaController().getAllTypesOfNomina();
-        for (ListaNomina nomi : nomis) {
+        nomis.stream().forEach((nomi) -> {
             comboNominas.addItem(nomi);
-        }
+        });
         
         //Se selecciona el departamento adecuado
         comboNominas.setSelectedItem(
@@ -107,7 +107,7 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         //Se ajusta la fecha mostrada
         Calendar cal = Calendar.getInstance();
         cal.setTime(empleado.getFechaIngreso());
-        chooserDateIngreso.setCurrent(cal);
+        chooserDateIngreso.setSelectedDate(cal);
         
         //Se completan los campos de texto con los datos del empleado
         txtNombre.setText(empleado.getNombre());
@@ -384,7 +384,7 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
             empleado.setRfc(txtRFC.getText());
             empleado.setHoras_dia((Integer)spinnerHoras.getValue());
             empleado.setDias_jornada((Integer)spinnerDias.getValue());
-            empleado.setSalario(((Integer)spinnerSalario.getValue()));
+            empleado.setSalario((Double)(spinnerSalario.getValue()));
             empleado.setFechaIngreso(chooserDateIngreso.getSelectedDate().getTime());
             empleado.setDepartamento(((Departamento)comboDepartamentos.getSelectedItem()).getId_dep());
             empleado.setPuesto(((Puesto)comboPuestos.getSelectedItem()).getId_puesto());

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="nominas" name="nominas.entity.Deduccion" optimistic-lock="version" table="deducciones">
+        <id name="id_deduccion" type="int">
+          <column name="id_deduccion"/>
+          <generator class="assigned"/>
+        </id>
+    </class>
+    <property name="nombre" type="string">
+      <column length="100" name="nombre" not-null="true"/>
+    </property>
+    <property name="empleado" type="int">
+      <column length="8" name="empleado" not-null="true"/>
+    </property>
+    <property name="cantidad" type="double">
+      <column name="cantidad" not-null="true"/>
+    </property>
+    <property name="fecha" type="timestamp">
+      <column name="fecha" not-null="true"/>
+    </property>
+</hibernate-mapping>

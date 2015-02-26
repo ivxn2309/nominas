@@ -39,7 +39,7 @@
     <property name="nomina" type="int">
       <column length="4" name="nomina" not-null="false"/>
     </property>
-    <property name="salario" type="int">
+    <property name="salario" type="double">
       <column length="5" name="salario" not-null="false"/>
     </property>
   </class>
