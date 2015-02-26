@@ -92,9 +92,9 @@
                           <Component id="txtEmail" pref="200" max="32767" attributes="0"/>
                           <Component id="txtApellido" pref="200" max="32767" attributes="0"/>
                           <Component id="txtNombre" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jLabel1" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="labelNombre" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="labelApellidos" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="labelEmail" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -102,8 +102,8 @@
                           <Component id="txtIMSS" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel5" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="jLabel6" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="labelRFC" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="labelIMSS" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="129" max="32767" attributes="0"/>
                           </Group>
@@ -117,8 +117,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelRFC" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -127,8 +127,8 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelIMSS" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -136,7 +136,7 @@
                           <Component id="txtApellido" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelEmail" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtEmail" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace pref="20" max="32767" attributes="0"/>
@@ -145,21 +145,21 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="labelNombre">
               <Properties>
                 <Property name="text" type="java.lang.String" value="*Nombre(s):"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtNombre">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
+            <Component class="javax.swing.JLabel" name="labelApellidos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="*Apellidos:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtApellido">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel3">
+            <Component class="javax.swing.JLabel" name="labelEmail">
               <Properties>
                 <Property name="text" type="java.lang.String" value="E-mail:"/>
               </Properties>
@@ -168,14 +168,14 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtRFC">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel5">
+            <Component class="javax.swing.JLabel" name="labelRFC">
               <Properties>
                 <Property name="text" type="java.lang.String" value="R.F.C.:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtIMSS">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel6">
+            <Component class="javax.swing.JLabel" name="labelIMSS">
               <Properties>
                 <Property name="text" type="java.lang.String" value="I.M.S.S.:"/>
               </Properties>
@@ -201,8 +201,8 @@
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="comboPuestos" pref="200" max="32767" attributes="0"/>
                                   <Component id="comboDepartamentos" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="jLabel7" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
-                                  <Component id="jLabel8" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
+                                  <Component id="labelDep" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
+                                  <Component id="labelPuesto" alignment="0" min="-2" pref="69" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -210,8 +210,8 @@
                                   <Component id="spinnerSalario" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel9" min="-2" pref="96" max="-2" attributes="0"/>
-                                          <Component id="jLabel12" min="-2" pref="149" max="-2" attributes="0"/>
+                                          <Component id="labelFecha" min="-2" pref="96" max="-2" attributes="0"/>
+                                          <Component id="labelSalario" min="-2" pref="149" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -220,16 +220,16 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="comboNominas" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="labelNominas" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel10" min="-2" pref="70" max="-2" attributes="0"/>
+                                  <Component id="labelHoras" min="-2" pref="70" max="-2" attributes="0"/>
                                   <Component id="spinnerHoras" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="29" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel11" max="32767" attributes="0"/>
+                                  <Component id="labelDias" max="32767" attributes="0"/>
                                   <Component id="spinnerDias" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -243,8 +243,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelDep" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -253,15 +253,15 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelPuesto" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelSalario" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="comboPuestos" min="-2" pref="36" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelNominas" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="comboNominas" min="-2" pref="36" max="-2" attributes="0"/>
                           </Group>
@@ -269,8 +269,8 @@
                               <Component id="spinnerSalario" min="-2" pref="36" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelHoras" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelDias" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -285,12 +285,12 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabel7">
+            <Component class="javax.swing.JLabel" name="labelDep">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Departamento:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel8">
+            <Component class="javax.swing.JLabel" name="labelPuesto">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Puesto:"/>
               </Properties>
@@ -321,17 +321,17 @@
             </Component>
             <Component class="datechooser.beans.DateChooserCombo" name="chooserDateIngreso">
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel9">
+            <Component class="javax.swing.JLabel" name="labelFecha">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Fecha de Ingreso:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel10">
+            <Component class="javax.swing.JLabel" name="labelHoras">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Horas al d&#xed;a"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel11">
+            <Component class="javax.swing.JLabel" name="labelDias">
               <Properties>
                 <Property name="text" type="java.lang.String" value="D&#xed;as de jornada"/>
               </Properties>
@@ -362,7 +362,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel4">
+            <Component class="javax.swing.JLabel" name="labelNominas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nominas"/>
               </Properties>
@@ -374,7 +374,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel12">
+            <Component class="javax.swing.JLabel" name="labelSalario">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Salario Diario"/>
               </Properties>

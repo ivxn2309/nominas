@@ -126,31 +126,31 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
 
         tabbedPanel = new javax.swing.JTabbedPane();
         panelBasico = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        labelNombre = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        labelApellidos = new javax.swing.JLabel();
         txtApellido = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        labelEmail = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         txtRFC = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        labelRFC = new javax.swing.JLabel();
         txtIMSS = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        labelIMSS = new javax.swing.JLabel();
         panelTrabajo = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        labelDep = new javax.swing.JLabel();
+        labelPuesto = new javax.swing.JLabel();
         comboDepartamentos = new javax.swing.JComboBox();
         comboPuestos = new javax.swing.JComboBox();
         chooserDateIngreso = new datechooser.beans.DateChooserCombo();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        labelFecha = new javax.swing.JLabel();
+        labelHoras = new javax.swing.JLabel();
+        labelDias = new javax.swing.JLabel();
         spinnerHoras = new javax.swing.JSpinner();
         spinnerDias = new javax.swing.JSpinner();
         comboNominas = new javax.swing.JComboBox();
-        jLabel4 = new javax.swing.JLabel();
+        labelNominas = new javax.swing.JLabel();
         spinnerSalario = new javax.swing.JSpinner();
-        jLabel12 = new javax.swing.JLabel();
+        labelSalario = new javax.swing.JLabel();
         buttonSave = new javax.swing.JButton();
         statusBar = new javax.swing.JLabel();
 
@@ -163,15 +163,15 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
 
         tabbedPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel1.setText("*Nombre(s):");
+        labelNombre.setText("*Nombre(s):");
 
-        jLabel2.setText("*Apellidos:");
+        labelApellidos.setText("*Apellidos:");
 
-        jLabel3.setText("E-mail:");
+        labelEmail.setText("E-mail:");
 
-        jLabel5.setText("R.F.C.:");
+        labelRFC.setText("R.F.C.:");
 
-        jLabel6.setText("I.M.S.S.:");
+        labelIMSS.setText("I.M.S.S.:");
 
         javax.swing.GroupLayout panelBasicoLayout = new javax.swing.GroupLayout(panelBasico);
         panelBasico.setLayout(panelBasicoLayout);
@@ -183,17 +183,17 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
                     .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(txtNombre)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelApellidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtRFC)
                     .addComponent(txtIMSS)
                     .addGroup(panelBasicoLayout.createSequentialGroup()
                         .addGroup(panelBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelIMSS, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 129, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -202,22 +202,22 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
             .addGroup(panelBasicoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel5))
+                    .addComponent(labelNombre)
+                    .addComponent(labelRFC))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtRFC, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(txtNombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6))
+                    .addComponent(labelApellidos)
+                    .addComponent(labelIMSS))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtIMSS, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(txtApellido))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(labelEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -225,19 +225,19 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
 
         tabbedPanel.addTab("Datos Básicos", panelBasico);
 
-        jLabel7.setText("Departamento:");
+        labelDep.setText("Departamento:");
 
-        jLabel8.setText("Puesto:");
+        labelPuesto.setText("Puesto:");
 
         comboDepartamentos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         comboPuestos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel9.setText("Fecha de Ingreso:");
+        labelFecha.setText("Fecha de Ingreso:");
 
-        jLabel10.setText("Horas al día");
+        labelHoras.setText("Horas al día");
 
-        jLabel11.setText("Días de jornada");
+        labelDias.setText("Días de jornada");
 
         spinnerHoras.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
 
@@ -245,11 +245,11 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
 
         comboNominas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel4.setText("Nominas");
+        labelNominas.setText("Nominas");
 
         spinnerSalario.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, 10000.0d, 1.0d));
 
-        jLabel12.setText("Salario Diario");
+        labelSalario.setText("Salario Diario");
 
         javax.swing.GroupLayout panelTrabajoLayout = new javax.swing.GroupLayout(panelTrabajo);
         panelTrabajo.setLayout(panelTrabajoLayout);
@@ -262,28 +262,28 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
                         .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(comboPuestos, 0, 200, Short.MAX_VALUE)
                             .addComponent(comboDepartamentos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelDep, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelPuesto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(chooserDateIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                             .addComponent(spinnerSalario)
                             .addGroup(panelTrabajoLayout.createSequentialGroup()
                                 .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(labelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(panelTrabajoLayout.createSequentialGroup()
                         .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(comboNominas, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelNominas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(spinnerHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelDias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(spinnerDias, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
@@ -292,30 +292,30 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
             .addGroup(panelTrabajoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel9))
+                    .addComponent(labelDep)
+                    .addComponent(labelFecha))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(chooserDateIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(comboDepartamentos, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel12))
+                    .addComponent(labelPuesto)
+                    .addComponent(labelSalario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelTrabajoLayout.createSequentialGroup()
                         .addComponent(comboPuestos, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
+                        .addComponent(labelNominas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboNominas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelTrabajoLayout.createSequentialGroup()
                         .addComponent(spinnerSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11))
+                            .addComponent(labelHoras)
+                            .addComponent(labelDias))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(spinnerDias, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
@@ -371,7 +371,7 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         //Si es empleado nuevo, se crea una nueva instancia
         if(isNewEmployee) empleado = new Empleado();
         //De lo contrario se utiliza el empleado obtenido
-        
+
         if(txtNombre.getText().trim().length() < 2)
             statusBar.setText("Debes introducir un nombre válido.");
         else if(txtApellido.getText().trim().length() < 2)
@@ -389,14 +389,14 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
             empleado.setDepartamento(((Departamento)comboDepartamentos.getSelectedItem()).getId_dep());
             empleado.setPuesto(((Puesto)comboPuestos.getSelectedItem()).getId_puesto());
             empleado.setNomina(((ListaNomina)comboNominas.getSelectedItem()).getId());
-            
+
             //Si es nuevo empleado, se guarda un nuevo registro
             if(isNewEmployee)
                 new EmpleadoController().saveNewEmpleado(empleado);
             //De lo contrario se actualiza
             else
                 new EmpleadoController().updateEmpleado(empleado);
-            
+
             //Se notifica, se limpia, y se cierra
             statusBar.setText("Empleado guardado correctamente");
             clearFields();
@@ -421,18 +421,18 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox comboDepartamentos;
     private javax.swing.JComboBox comboNominas;
     private javax.swing.JComboBox comboPuestos;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel labelApellidos;
+    private javax.swing.JLabel labelDep;
+    private javax.swing.JLabel labelDias;
+    private javax.swing.JLabel labelEmail;
+    private javax.swing.JLabel labelFecha;
+    private javax.swing.JLabel labelHoras;
+    private javax.swing.JLabel labelIMSS;
+    private javax.swing.JLabel labelNombre;
+    private javax.swing.JLabel labelNominas;
+    private javax.swing.JLabel labelPuesto;
+    private javax.swing.JLabel labelRFC;
+    private javax.swing.JLabel labelSalario;
     private javax.swing.JPanel panelBasico;
     private javax.swing.JPanel panelTrabajo;
     private javax.swing.JSpinner spinnerDias;
