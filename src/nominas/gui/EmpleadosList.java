@@ -1,20 +1,23 @@
 package nominas.gui;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import nominas.control.DeptoController;
 import nominas.control.EmpleadoController;
 import nominas.control.ListaNominaController;
 import nominas.control.PuestoController;
+import nominas.control.SalarioController;
 import nominas.entity.Departamento;
 import nominas.entity.Empleado;
 import nominas.entity.ListaNomina;
 import nominas.entity.Puesto;
+import nominas.util.Fecha;
 
 public class EmpleadosList extends javax.swing.JInternalFrame {
     
-    private MainWindow parent;
+    private final MainWindow parent;
 
     public EmpleadosList(MainWindow parent) {
         this.parent = parent;
@@ -46,8 +49,10 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
         lblNombre.setText("Nombre: " + emp);
         lblEmail.setText("Email: " + emp.getEmail());
         lblRFC.setText("RFC: " + emp.getRfc());
+        lblCURP.setText("CURP: " + emp.getCurp());
         lblIMSS.setText("IMSS: " + emp.getImss());
-        lblIngreso.setText("Ingreso: " + emp.getFechaIngreso());
+        Fecha fecha = new Fecha(emp.getFechaIngreso());
+        lblIngreso.setText("Ingreso: " + fecha.toString());
         lblHoras.setText("Horas al día: " + emp.getHoras_dia());
         lblDias.setText("Dias de Jornada: " + emp.getDias_jornada());
         lblSalario.setText("Salario diario: " + emp.getSalario());
@@ -72,7 +77,6 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
 
         scrollPane = new javax.swing.JScrollPane();
         listEmployees = new javax.swing.JList();
-        lblEmp = new javax.swing.JLabel();
         panelData = new javax.swing.JPanel();
         lblFolio = new javax.swing.JLabel();
         panelBasico = new javax.swing.JPanel();
@@ -81,6 +85,7 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
         lblRFC = new javax.swing.JLabel();
         lblIMSS = new javax.swing.JLabel();
         lblIngreso = new javax.swing.JLabel();
+        lblCURP = new javax.swing.JLabel();
         panelTrabajo = new javax.swing.JPanel();
         lblNomina = new javax.swing.JLabel();
         lblDepa = new javax.swing.JLabel();
@@ -90,7 +95,7 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
         lblSalario = new javax.swing.JLabel();
         btnBorrar = new javax.swing.JButton();
         btnModify = new javax.swing.JButton();
-        statusBar = new javax.swing.JLabel();
+        btnSalario = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
 
         setClosable(true);
@@ -98,6 +103,7 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
         setTitle("Empleados");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/view.png"))); // NOI18N
 
+        listEmployees.setBorder(javax.swing.BorderFactory.createTitledBorder("Empleados"));
         listEmployees.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -105,8 +111,6 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
         });
         listEmployees.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         scrollPane.setViewportView(listEmployees);
-
-        lblEmp.setText("Lista de Empleados");
 
         panelData.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -118,11 +122,13 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
 
         lblEmail.setText("E-mail: __________________________________________");
 
-        lblRFC.setText("RFC: __________________________________________");
+        lblRFC.setText("RFC: OOOOOOOOOOOOO");
 
         lblIMSS.setText("IMSS: __________________________________________");
 
         lblIngreso.setText("Ingreso: __________________________________________");
+
+        lblCURP.setText("CURP: OOOOOOOOOOOOOOOOOO");
 
         javax.swing.GroupLayout panelBasicoLayout = new javax.swing.GroupLayout(panelBasico);
         panelBasico.setLayout(panelBasicoLayout);
@@ -131,12 +137,15 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
             .addGroup(panelBasicoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBasicoLayout.createSequentialGroup()
+                        .addComponent(lblRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblCURP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblIMSS, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         panelBasicoLayout.setVerticalGroup(
             panelBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +155,9 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblRFC)
+                .addGroup(panelBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRFC)
+                    .addComponent(lblCURP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblIMSS)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -181,7 +192,7 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
                     .addComponent(lblHoras)
                     .addComponent(lblDias)
                     .addComponent(lblSalario))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelTrabajoLayout.setVerticalGroup(
             panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,6 +226,13 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
             }
         });
 
+        btnSalario.setText("Gestionar Salario");
+        btnSalario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelDataLayout = new javax.swing.GroupLayout(panelData);
         panelData.setLayout(panelDataLayout);
         panelDataLayout.setHorizontalGroup(
@@ -228,9 +246,11 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
                         .addComponent(lblFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelTrabajo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelDataLayout.createSequentialGroup()
-                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnModify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(btnSalario, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnModify, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         panelDataLayout.setVerticalGroup(
@@ -242,15 +262,13 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
                 .addComponent(panelBasico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelTrabajo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(btnModify, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addGroup(panelDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSalario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(btnBorrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnModify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        statusBar.setForeground(new java.awt.Color(102, 102, 102));
-        statusBar.setText("Listo.");
 
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
@@ -265,48 +283,45 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblEmp)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(statusBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(scrollPane))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblEmp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollPane)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(statusBar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        int idx = listEmployees.getSelectedIndex();
         reloadEmployees();
+        listEmployees.setSelectedIndex(idx);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        EmpleadoController control = new EmpleadoController();
-        Empleado empleado = (Empleado)listEmployees.getSelectedValue();
-        control.deleteEmpleado(empleado);
-        reloadEmployees();        
+        int ans = JOptionPane.showConfirmDialog(this, "Estas seguro de borrar (No se puede deshacer)", "Confirma", 2, 1);
+        if(ans == 0){
+            Empleado empleado = (Empleado)listEmployees.getSelectedValue();
+            new SalarioController().deleteAllDeduccionesOf(empleado);
+            new SalarioController().deleteAllPercepcionesOf(empleado);
+            EmpleadoController control = new EmpleadoController();
+            control.deleteEmpleado(empleado);
+            reloadEmployees();
+        }        
     }//GEN-LAST:event_btnBorrarActionPerformed
 
     private void btnModifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyActionPerformed
@@ -316,15 +331,23 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
         form.moveToFront();
     }//GEN-LAST:event_btnModifyActionPerformed
 
+    private void btnSalarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalarioActionPerformed
+        SalarioManager manager = new SalarioManager((Empleado)listEmployees.getSelectedValue());     
+        manager.setVisible(true);
+        this.getParent().add(manager);
+        manager.moveToFront();
+    }//GEN-LAST:event_btnSalarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBorrar;
     private javax.swing.JButton btnModify;
+    private javax.swing.JButton btnSalario;
+    private javax.swing.JLabel lblCURP;
     private javax.swing.JLabel lblDepa;
     private javax.swing.JLabel lblDias;
     private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblEmp;
     private javax.swing.JLabel lblFolio;
     private javax.swing.JLabel lblHoras;
     private javax.swing.JLabel lblIMSS;
@@ -339,6 +362,5 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panelData;
     private javax.swing.JPanel panelTrabajo;
     private javax.swing.JScrollPane scrollPane;
-    private javax.swing.JLabel statusBar;
     // End of variables declaration//GEN-END:variables
 }

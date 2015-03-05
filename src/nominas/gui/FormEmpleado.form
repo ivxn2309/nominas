@@ -104,9 +104,11 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="labelRFC" min="-2" pref="100" max="-2" attributes="0"/>
                                   <Component id="labelIMSS" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="labelCURP" alignment="0" min="-2" pref="128" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="129" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="101" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="txtCURP" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -128,17 +130,23 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="labelApellidos" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelIMSS" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelCURP" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtIMSS" pref="36" max="32767" attributes="0"/>
-                          <Component id="txtApellido" max="32767" attributes="0"/>
+                          <Component id="txtApellido" pref="36" max="32767" attributes="0"/>
+                          <Component id="txtCURP" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="labelEmail" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelIMSS" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtEmail" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtEmail" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="txtIMSS" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace pref="20" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -179,6 +187,13 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="I.M.S.S.:"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="labelCURP">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="*C.U.R.P."/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="txtCURP">
             </Component>
           </SubComponents>
         </Container>

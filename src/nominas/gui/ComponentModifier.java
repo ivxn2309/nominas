@@ -8,7 +8,6 @@ import nominas.control.DeptoController;
 import nominas.control.ListaNominaController;
 import nominas.control.PuestoController;
 import nominas.entity.Departamento;
-import nominas.entity.Empleado;
 import nominas.entity.ListaNomina;
 import nominas.entity.Puesto;
 import nominas.util.HibernateUtil;
@@ -121,7 +120,8 @@ public class ComponentModifier extends javax.swing.JInternalFrame {
                 list = new PuestoController().getAllPuestos();
             else if(obj.getClass().getSimpleName().equals("ListaNomina"))
                 list = new ListaNominaController().getAllTypesOfNomina();
-            listComponents.setListData(list.toArray());
+            if(list != null)
+                listComponents.setListData(list.toArray());
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 

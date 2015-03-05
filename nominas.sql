@@ -17,7 +17,7 @@ FLUSH PRIVILEGES;
 -- ------------------------------------------------
 -- DROPS
 -- ------------------------------------------------
-DROP TABLE IF EXISTS Perecepciones;
+DROP TABLE IF EXISTS Percepciones;
 DROP TABLE IF EXISTS Deducciones;
 DROP TABLE IF EXISTS Empleados;
 DROP TABLE IF EXISTS ListaNominas;
@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS Empleados (
     apellido VARCHAR(100) NOT NULL,
     email VARCHAR(100),
     rfc VARCHAR(100),
+    curp VARCHAR(100),
     imss VARCHAR(100),
     departamento INT(4),
     puesto INT(4),
@@ -96,6 +97,7 @@ CREATE TABLE IF NOT EXISTS Deducciones (
     empleado INT(8) NOT NULL,
     cantidad DECIMAL(8,2) NOT NULL,
     fecha DATE NOT NULL,
+    fin DATE,
     PRIMARY KEY(id_deduccion),
     FOREIGN KEY(empleado) REFERENCES Empleados(id_empleado)
 );
@@ -103,13 +105,14 @@ CREATE TABLE IF NOT EXISTS Deducciones (
 -- ------------------------------------------------
 -- Perecepciones
 -- ------------------------------------------------
-DROP TABLE IF EXISTS Perecepciones;
-CREATE TABLE IF NOT EXISTS Perecepciones (
+DROP TABLE IF EXISTS Percepciones;
+CREATE TABLE IF NOT EXISTS Percepciones (
     id_percepcion INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(100) NOT NULL,
     empleado INT(8) NOT NULL,
     cantidad DECIMAL(8,2) NOT NULL,
     fecha DATE NOT NULL,
+    fin DATE,
     PRIMARY KEY(id_percepcion),
     FOREIGN KEY(empleado) REFERENCES Empleados(id_empleado)
 );
@@ -205,14 +208,14 @@ INSERT INTO ListaNominas VALUES(15, "Pensionados");
 -- Testing
 -- -----------------------------------------------------------
 INSERT INTO `nominas`.`empleados` 
-(`id_empleado`, `nombre`, `apellido`, `email`, `rfc`, `imss`, `departamento`, `puesto`, `fecha_ingreso`, `horas_dia`, `dias_jornada`, `nomina`, `salario`) 
+(`id_empleado`, `nombre`, `apellido`, `email`, `rfc`, `imss`, `departamento`, `puesto`, `fecha_ingreso`, `horas_dia`, `dias_jornada`, `nomina`, `salario`, `curp`) 
 VALUES 
-(NULL, 'Juan', 'Perez', 'juanito@yahoo.com', 'PEPE12345678', '234567890-1', '5', '1', '2015-01-12', '5', '15', '7', '150'),
-(NULL, 'Lupe', 'Gonzales', 'lupita@yahoo.com', 'GPEL12345678', '234517890-1', '4', '8', '2015-01-12', '8', '14', '2', '100'),
-(NULL, 'Pedro', 'Stalling', 'pedrito@yahoo.com', 'STAP12345678', '233567890-1', '6', '7', '2015-01-12', '8', '10', '7', '110'),
-(NULL, 'Adrian', 'Fernandez', 'adri@yahoo.com', 'FEAS12345678', '2343267890-1', '5', '10', '2015-01-12', '8', '15', '3', '120'),
-(NULL, 'Jorge', 'Jimenez', 'george@yahoo.com', 'JITJ12345678', '234987890-1', '4', '10', '2015-01-12', '8', '15', '3', '120'),
-(NULL, 'Pepe', 'Veraz', 'pepitoveraz@yahoo.com', 'VEPE12345678', '234501790-1', '1', '10', '2015-01-12', '8', '15', '3', '120'), 
-(NULL, 'Lorenzo', 'Morales', 'lencho_mora@yahoo.com', 'MOLO12345678', '385567890-1', '1', '10', '2015-01-12', '8', '5', '3', '120'), 
-(NULL, 'Ivan', 'Tovar', 'ivxn2309@hotmail.com', 'TOVF12345678', '234560967-1', '5', '10', '2015-01-12', '8', '15', '5', '190'), 
-(NULL, 'Filigonio', 'Garcia', 'filiga@yahoo.com', 'GAFI123456789', '15356689-3', '8', '5', '2014-08-05', '8', '10', '2', '100');
+(NULL, 'Juan', 'Perez', 'juanito@yahoo.com', 'PEPE12345678', '234567890-1', '5', '1', '2015-01-12', '5', '15', '7', '150', 'PEPE12345678'),
+(NULL, 'Lupe', 'Gonzales', 'lupita@yahoo.com', 'GPEL12345678', '234517890-1', '4', '8', '2015-01-12', '8', '14', '2', '100', 'GPEL12345678'),
+(NULL, 'Pedro', 'Stalling', 'pedrito@yahoo.com', 'STAP12345678', '233567890-1', '6', '7', '2015-01-12', '8', '10', '7', '110', 'adri@yahoo.com'),
+(NULL, 'Adrian', 'Fernandez', 'adri@yahoo.com', 'FEAS12345678', '2343267890-1', '5', '10', '2015-01-12', '8', '15', '3', '120', 'FEAS12345678'),
+(NULL, 'Jorge', 'Jimenez', 'george@yahoo.com', 'JITJ12345678', '234987890-1', '4', '10', '2015-01-12', '8', '15', '3', '120', 'JITJ12345678'),
+(NULL, 'Pepe', 'Veraz', 'pepitoveraz@yahoo.com', 'VEPE12345678', '234501790-1', '1', '10', '2015-01-12', '8', '15', '3', '120', 'VEPE12345678'), 
+(NULL, 'Lorenzo', 'Morales', 'lencho_mora@yahoo.com', 'MOLO12345678', '385567890-1', '1', '10', '2015-01-12', '8', '5', '3', '120', 'MOLO12345678'), 
+(NULL, 'Ivan', 'Tovar', 'ivxn2309@hotmail.com', 'TOVF12345678', '234560967-1', '5', '10', '2015-01-12', '8', '15', '5', '190', 'TOVF920923HZSV00R2'), 
+(NULL, 'Filigonio', 'Garcia', 'filiga@yahoo.com', 'GAFI123456789', '15356689-3', '8', '5', '2014-08-05', '8', '10', '2', '100', 'GAFI123456789');

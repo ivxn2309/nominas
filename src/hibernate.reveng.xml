@@ -7,4 +7,6 @@
   <table-filter match-name="empleados"/>
   <table-filter match-name="departamentos"/>
   <table-filter match-name="listanominas"/>
+  <table-filter match-name="deducciones"/>
+  <table-filter match-name="percepciones"/>
 </hibernate-reverse-engineering>

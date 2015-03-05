@@ -29,42 +29,29 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="scrollPane" pref="200" max="32767" attributes="0"/>
-                          <Component id="btnActualizar" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="panelData" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="lblEmp" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Component id="statusBar" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnActualizar" pref="200" max="32767" attributes="0"/>
+                  <Component id="scrollPane" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="panelData" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblEmp" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="panelData" min="-2" max="-2" attributes="0"/>
+                  <Component id="panelData" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="scrollPane" min="-2" pref="361" max="-2" attributes="0"/>
+                      <Component id="scrollPane" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnActualizar" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="statusBar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -79,6 +66,11 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="listEmployees">
           <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="Empleados"/>
+              </Border>
+            </Property>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="5">
                 <StringItem index="0" value="Item 1"/>
@@ -93,11 +85,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="lblEmp">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Lista de Empleados"/>
-      </Properties>
-    </Component>
     <Container class="javax.swing.JPanel" name="panelData">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -120,9 +107,11 @@
                       </Group>
                       <Component id="panelTrabajo" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnBorrar" min="-2" pref="201" max="-2" attributes="0"/>
+                          <Component id="btnBorrar" min="-2" pref="130" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnModify" max="32767" attributes="0"/>
+                          <Component id="btnSalario" pref="142" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btnModify" min="-2" pref="130" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -131,17 +120,18 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblFolio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="panelBasico" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="panelTrabajo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnBorrar" alignment="3" pref="38" max="32767" attributes="0"/>
-                      <Component id="btnModify" alignment="3" pref="38" max="32767" attributes="0"/>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btnSalario" alignment="1" pref="38" max="32767" attributes="0"/>
+                      <Component id="btnBorrar" alignment="1" max="32767" attributes="0"/>
+                      <Component id="btnModify" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -169,13 +159,17 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="lblRFC" min="-2" pref="160" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="lblCURP" min="-2" pref="200" max="-2" attributes="0"/>
+                          </Group>
                           <Component id="lblEmail" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                           <Component id="lblNombre" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
-                          <Component id="lblRFC" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                           <Component id="lblIMSS" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                           <Component id="lblIngreso" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="22" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -187,7 +181,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblEmail" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblRFC" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblRFC" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblCURP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblIMSS" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -210,7 +207,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblRFC">
               <Properties>
-                <Property name="text" type="java.lang.String" value="RFC: __________________________________________"/>
+                <Property name="text" type="java.lang.String" value="RFC: OOOOOOOOOOOOO"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblIMSS">
@@ -221,6 +218,11 @@
             <Component class="javax.swing.JLabel" name="lblIngreso">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ingreso: __________________________________________"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="lblCURP">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="CURP: OOOOOOOOOOOOOOOOOO"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -247,7 +249,7 @@
                           <Component id="lblDias" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="lblSalario" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="78" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -320,16 +322,16 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnModifyActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JButton" name="btnSalario">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Gestionar Salario"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalarioActionPerformed"/>
+          </Events>
+        </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="statusBar">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="66" green="66" red="66" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Listo."/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btnActualizar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Actualizar"/>

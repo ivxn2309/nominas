@@ -1,8 +1,11 @@
 package nominas.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.Calendar;
 import java.util.List;
+import javax.swing.JOptionPane;
 import nominas.control.DeptoController;
 import nominas.control.EmpleadoController;
 import nominas.control.ListaNominaController;
@@ -114,6 +117,7 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         txtApellido.setText(empleado.getApellido());
         txtEmail.setText(empleado.getEmail());
         txtRFC.setText(empleado.getRfc());
+        txtCURP.setText(empleado.getCurp());
         txtIMSS.setText(empleado.getImss());
         spinnerDias.setValue(empleado.getDias_jornada());
         spinnerHoras.setValue(empleado.getHoras_dia());
@@ -136,6 +140,8 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         labelRFC = new javax.swing.JLabel();
         txtIMSS = new javax.swing.JTextField();
         labelIMSS = new javax.swing.JLabel();
+        labelCURP = new javax.swing.JLabel();
+        txtCURP = new javax.swing.JTextField();
         panelTrabajo = new javax.swing.JPanel();
         labelDep = new javax.swing.JLabel();
         labelPuesto = new javax.swing.JLabel();
@@ -173,6 +179,8 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
 
         labelIMSS.setText("I.M.S.S.:");
 
+        labelCURP.setText("*C.U.R.P.");
+
         javax.swing.GroupLayout panelBasicoLayout = new javax.swing.GroupLayout(panelBasico);
         panelBasico.setLayout(panelBasicoLayout);
         panelBasicoLayout.setHorizontalGroup(
@@ -193,8 +201,10 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
                     .addGroup(panelBasicoLayout.createSequentialGroup()
                         .addGroup(panelBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelIMSS, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 129, Short.MAX_VALUE)))
+                            .addComponent(labelIMSS, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelCURP, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 101, Short.MAX_VALUE))
+                    .addComponent(txtCURP))
                 .addContainerGap())
         );
         panelBasicoLayout.setVerticalGroup(
@@ -211,15 +221,19 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelApellidos)
-                    .addComponent(labelIMSS))
+                    .addComponent(labelCURP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtIMSS, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(txtApellido))
+                    .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(txtCURP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelEmail)
+                .addGroup(panelBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelEmail)
+                    .addComponent(labelIMSS))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelBasicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIMSS))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -371,17 +385,14 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         //Si es empleado nuevo, se crea una nueva instancia
         if(isNewEmployee) empleado = new Empleado();
         //De lo contrario se utiliza el empleado obtenido
-
-        if(txtNombre.getText().trim().length() < 2)
-            statusBar.setText("Debes introducir un nombre válido.");
-        else if(txtApellido.getText().trim().length() < 2)
-            statusBar.setText("Debes introducir un apellido válido.");
-        else {
+        //Se comprueba la integridad de los campos
+        if(validateFields()){
             empleado.setNombre(txtNombre.getText());
             empleado.setApellido(txtApellido.getText());
-            empleado.setEmail(txtEmail.getText());
-            empleado.setImss(txtIMSS.getText());
-            empleado.setRfc(txtRFC.getText());
+            empleado.setEmail(txtEmail.getText().trim().toLowerCase());
+            empleado.setImss(txtIMSS.getText().trim().toUpperCase());
+            empleado.setRfc(txtRFC.getText().trim().toUpperCase());
+            empleado.setCurp(txtCURP.getText().trim().toUpperCase());
             empleado.setHoras_dia((Integer)spinnerHoras.getValue());
             empleado.setDias_jornada((Integer)spinnerDias.getValue());
             empleado.setSalario((Double)(spinnerSalario.getValue()));
@@ -391,11 +402,15 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
             empleado.setNomina(((ListaNomina)comboNominas.getSelectedItem()).getId());
 
             //Si es nuevo empleado, se guarda un nuevo registro
-            if(isNewEmployee)
+            if(isNewEmployee){
                 new EmpleadoController().saveNewEmpleado(empleado);
+                JOptionPane.showMessageDialog(this, "Registrado correctamente", "Exito", JOptionPane.PLAIN_MESSAGE);
+            }
             //De lo contrario se actualiza
-            else
+            else{
                 new EmpleadoController().updateEmpleado(empleado);
+                JOptionPane.showMessageDialog(this, "Actualizado correctamente", "Exito", JOptionPane.PLAIN_MESSAGE);
+            }
 
             //Se notifica, se limpia, y se cierra
             statusBar.setText("Empleado guardado correctamente");
@@ -404,12 +419,40 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_buttonSaveActionPerformed
 
+    private boolean validateFields(){
+        if(txtNombre.getText().trim().length() < 2)
+            statusBar.setText("Debes introducir un nombre válido.");
+        else if(txtApellido.getText().trim().length() < 2)
+            statusBar.setText("Debes introducir un apellido válido.");
+        else if(txtCURP.getText().trim().length() < 18)
+            statusBar.setText("La CURP introducida no es valida.");
+        else if(txtEmail.getText().trim().length() > 0 && 
+                (!txtEmail.getText().contains("@") || 
+                 !txtEmail.getText().contains(".") ||
+                 txtEmail.getText().contains(" ")))
+            statusBar.setText("El e-mail no es válido.");
+        else if(txtIMSS.getText().trim().length() > 0 && 
+                (txtIMSS.getText().trim().length() < 2 || 
+                txtIMSS.getText().trim().length() > 24))
+            statusBar.setText("El numero de seguro no es válido.");
+        //Valida si la fecha especificada es en el futuro
+        else if(chooserDateIngreso.getSelectedDate().getTime().after(Calendar.getInstance().getTime()))
+            statusBar.setText("La fecha de ingreso no puede ser en el futuro.");
+        else {
+            return true;
+        }
+        statusBar.setForeground(Color.RED);
+        statusBar.setFont(Font.decode("Century Gothic-BOLD-12"));
+        return false;
+    }
+    
     private void clearFields(){
         txtApellido.setText("");
         txtEmail.setText("");
         txtIMSS.setText("");
         txtNombre.setText("");
         txtRFC.setText("");
+        txtCURP.setText("");
         spinnerDias.setValue(1);
         spinnerHoras.setValue(1);
         spinnerSalario.setValue(0);
@@ -422,6 +465,7 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox comboNominas;
     private javax.swing.JComboBox comboPuestos;
     private javax.swing.JLabel labelApellidos;
+    private javax.swing.JLabel labelCURP;
     private javax.swing.JLabel labelDep;
     private javax.swing.JLabel labelDias;
     private javax.swing.JLabel labelEmail;
@@ -441,6 +485,7 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel statusBar;
     private javax.swing.JTabbedPane tabbedPanel;
     private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCURP;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtIMSS;
     private javax.swing.JTextField txtNombre;

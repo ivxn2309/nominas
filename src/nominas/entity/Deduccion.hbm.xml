@@ -6,17 +6,20 @@
           <column name="id_deduccion"/>
           <generator class="assigned"/>
         </id>
+        <property name="nombre" type="string">
+          <column length="100" name="nombre" not-null="true"/>
+        </property>
+        <property name="empleado" type="int">
+          <column length="8" name="empleado" not-null="true"/>
+        </property>
+        <property name="cantidad" type="double">
+          <column name="cantidad" not-null="true"/>
+        </property>
+        <property name="fecha" type="timestamp">
+          <column name="fecha" not-null="true"/>
+        </property>
+        <property name="fin" type="timestamp">
+          <column name="fin" not-null="false"/>
+        </property>
     </class>
-    <property name="nombre" type="string">
-      <column length="100" name="nombre" not-null="true"/>
-    </property>
-    <property name="empleado" type="int">
-      <column length="8" name="empleado" not-null="true"/>
-    </property>
-    <property name="cantidad" type="double">
-      <column name="cantidad" not-null="true"/>
-    </property>
-    <property name="fecha" type="timestamp">
-      <column name="fecha" not-null="true"/>
-    </property>
 </hibernate-mapping>

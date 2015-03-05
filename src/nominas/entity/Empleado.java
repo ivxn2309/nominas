@@ -3,7 +3,6 @@ package nominas.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
-import javax.persistence.*;
 
 public class Empleado implements Serializable {
     private int id_empleado;
@@ -11,6 +10,7 @@ public class Empleado implements Serializable {
     private String apellido;
     private String email;
     private String rfc;
+    private String curp;
     private String imss;
     private int departamento;
     private int puesto;
@@ -23,12 +23,13 @@ public class Empleado implements Serializable {
     public Empleado() {
     }
 
-    public Empleado(int id_empleado, String nombre, String apellido, String email, String rfc, String imss, int departamento, int puesto, Date fechaIngreso, int horas_dia, int dias_jornada, int nomina, int salario) {
+    public Empleado(int id_empleado, String nombre, String apellido, String email, String rfc, String curp, String imss, int departamento, int puesto, Date fechaIngreso, int horas_dia, int dias_jornada, int nomina, double salario) {
         this.id_empleado = id_empleado;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.rfc = rfc;
+        this.curp = curp;
         this.imss = imss;
         this.departamento = departamento;
         this.puesto = puesto;
@@ -77,6 +78,14 @@ public class Empleado implements Serializable {
 
     public void setRfc(String rfc) {
         this.rfc = rfc;
+    }
+    
+    public String getCurp() {
+        return curp;
+    }
+
+    public void setCurp(String curp) {
+        this.curp = curp;
     }
 
     public String getImss() {
@@ -143,14 +152,13 @@ public class Empleado implements Serializable {
         this.salario = salario;
     }
 
-    
-
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + this.id_empleado;
-        hash = 29 * hash + Objects.hashCode(this.rfc);
-        hash = 29 * hash + Objects.hashCode(this.imss);
+        int hash = 5;
+        hash = 73 * hash + this.id_empleado;
+        hash = 73 * hash + Objects.hashCode(this.rfc);
+        hash = 73 * hash + Objects.hashCode(this.curp);
+        hash = 73 * hash + Objects.hashCode(this.imss);
         return hash;
     }
 
@@ -163,20 +171,22 @@ public class Empleado implements Serializable {
             return false;
         }
         final Empleado other = (Empleado) obj;
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        if (!Objects.equals(this.apellido, other.apellido)) {
-            return false;
-        }
-        if (!Objects.equals(this.email, other.email)) {
+        if (this.id_empleado != other.id_empleado) {
             return false;
         }
         if (!Objects.equals(this.rfc, other.rfc)) {
             return false;
         }
+        if (!Objects.equals(this.curp, other.curp)) {
+            return false;
+        }
+        if (!Objects.equals(this.imss, other.imss)) {
+            return false;
+        }
         return true;
     }
+    
+    
 
     @Override
     public String toString() {

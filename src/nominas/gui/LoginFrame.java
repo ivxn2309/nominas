@@ -4,17 +4,11 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Icon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import nominas.control.UserController;
 import nominas.entity.User;
-import nominas.util.HibernateUtil;
 
 public class LoginFrame extends javax.swing.JFrame {
 

@@ -1,24 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package nominas.util;
 
 import java.util.List;
-import nominas.entity.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 
-/**
- * Hibernate Utility class with a convenient method to get Session Factory
- * object.
- *
- * @author Ivan Tovar
- */
 public class HibernateUtil {
 
     private static final SessionFactory sessionFactory;

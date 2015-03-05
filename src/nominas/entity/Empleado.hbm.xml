@@ -18,6 +18,9 @@
     <property name="rfc" type="string">
       <column length="100" name="rfc" not-null="false"/>
     </property>
+    <property name="curp" type="string">
+      <column length="100" name="curp" not-null="false"/>
+    </property>
     <property name="imss" type="string">
       <column length="100" name="imss" not-null="false"/>
     </property>
