@@ -82,13 +82,13 @@ public class MainWindow extends javax.swing.JFrame {
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 542, Short.MAX_VALUE)
+            .addGap(0, 537, Short.MAX_VALUE)
         );
 
         menuBar.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         menuBar.setMaximumSize(new java.awt.Dimension(60, 32769));
 
-        menuInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/icon_min.png"))); // NOI18N
+        menuInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/arrow.png"))); // NOI18N
         menuInicio.setText("Inicio");
         menuInicio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 

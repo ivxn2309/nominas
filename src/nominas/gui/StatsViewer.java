@@ -25,7 +25,6 @@ public class StatsViewer extends javax.swing.JInternalFrame {
         btnDepaStat = new javax.swing.JButton();
 
         setClosable(true);
-        setMaximizable(true);
         setTitle("Estadisticas");
         setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/stat.png"))); // NOI18N
 
