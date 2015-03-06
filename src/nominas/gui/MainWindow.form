@@ -31,7 +31,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mExit">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/nominas/ico/exit.png"/>
+                  <Image iconType="3" name="/nominas/ico/off.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Salir"/>
               </Properties>
@@ -49,13 +49,16 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mGralStat">
+            <MenuItem class="javax.swing.JMenuItem" name="mStat">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/nominas/ico/stat.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Estadisticas Generales"/>
+                <Property name="text" type="java.lang.String" value="Estadisticas Gr&#xe1;ficas"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mStatActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -125,7 +128,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mModifyDepartment">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/nominas/ico/department.png"/>
+                  <Image iconType="3" name="/nominas/ico/empresa.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Departamentos"/>
               </Properties>
@@ -136,7 +139,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mModifyPuesto">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/nominas/ico/puesto.png"/>
+                  <Image iconType="3" name="/nominas/ico/chair.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Puestos"/>
               </Properties>
@@ -147,7 +150,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="mModifyNominas">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/nominas/ico/coins.png"/>
+                  <Image iconType="3" name="/nominas/ico/money.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="N&#xf3;minas"/>
               </Properties>
@@ -206,7 +209,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="desktopPane" alignment="0" max="32767" attributes="0"/>
+          <Component id="desktopPane" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
