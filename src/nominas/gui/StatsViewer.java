@@ -57,6 +57,11 @@ public class StatsViewer extends javax.swing.JInternalFrame {
         btnEmpsStat.setFocusable(false);
         btnEmpsStat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEmpsStat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEmpsStat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpsStatActionPerformed(evt);
+            }
+        });
         toolBar.add(btnEmpsStat);
 
         btnNomStat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/money.png"))); // NOI18N
@@ -64,6 +69,11 @@ public class StatsViewer extends javax.swing.JInternalFrame {
         btnNomStat.setFocusable(false);
         btnNomStat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNomStat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNomStat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNomStatActionPerformed(evt);
+            }
+        });
         toolBar.add(btnNomStat);
 
         btnDepaStat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/empresa.png"))); // NOI18N
@@ -71,6 +81,11 @@ public class StatsViewer extends javax.swing.JInternalFrame {
         btnDepaStat.setFocusable(false);
         btnDepaStat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDepaStat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnDepaStat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDepaStatActionPerformed(evt);
+            }
+        });
         toolBar.add(btnDepaStat);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -89,9 +104,29 @@ public class StatsViewer extends javax.swing.JInternalFrame {
 
     private void btnGeneralStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneralStatActionPerformed
         ChartPanel panel = generator.getGeneralStatGraphic();
+        createGraphicWindow(panel);
+    }//GEN-LAST:event_btnGeneralStatActionPerformed
+
+    private void btnDepaStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepaStatActionPerformed
+        ChartPanel panel = generator.getDeptoStatGraphic();
+        createGraphicWindow(panel);
+    }//GEN-LAST:event_btnDepaStatActionPerformed
+
+    private void btnNomStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNomStatActionPerformed
+        ChartPanel panel = generator.getNominaStatGraphic();
+        createGraphicWindow(panel);
+    }//GEN-LAST:event_btnNomStatActionPerformed
+
+    private void btnEmpsStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpsStatActionPerformed
+        ChartPanel panel = generator.getEmployeesStatGraphic();
+        createGraphicWindow(panel);
+    }//GEN-LAST:event_btnEmpsStatActionPerformed
+
+    private void createGraphicWindow(ChartPanel panel) {
         JInternalFrame graphicWindow = new JInternalFrame();
         graphicWindow.getContentPane().add(panel);
         graphicWindow.setClosable(true);
+        graphicWindow.setMaximizable(true);
         graphicWindow.setResizable(true);
         graphicWindow.setTitle("Estadísticas Generales");
         graphicWindow.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/stat.png")));
@@ -99,9 +134,7 @@ public class StatsViewer extends javax.swing.JInternalFrame {
         graphicWindow.setVisible(true);
         this.getParent().add(graphicWindow);
         graphicWindow.moveToFront();
-    }//GEN-LAST:event_btnGeneralStatActionPerformed
-
-
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDepaStat;
     private javax.swing.JButton btnEmpStat;

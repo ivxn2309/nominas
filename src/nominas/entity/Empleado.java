@@ -15,6 +15,7 @@ public class Empleado implements Serializable {
     private int departamento;
     private int puesto;
     private Date fechaIngreso;
+    private Date fechaSalida;
     private int horas_dia;
     private int dias_jornada;
     private int nomina;
@@ -23,7 +24,7 @@ public class Empleado implements Serializable {
     public Empleado() {
     }
 
-    public Empleado(int id_empleado, String nombre, String apellido, String email, String rfc, String curp, String imss, int departamento, int puesto, Date fechaIngreso, int horas_dia, int dias_jornada, int nomina, double salario) {
+    public Empleado(int id_empleado, String nombre, String apellido, String email, String rfc, String curp, String imss, int departamento, int puesto, Date fechaIngreso, Date fechaSalida, int horas_dia, int dias_jornada, int nomina, double salario) {
         this.id_empleado = id_empleado;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -34,6 +35,7 @@ public class Empleado implements Serializable {
         this.departamento = departamento;
         this.puesto = puesto;
         this.fechaIngreso = fechaIngreso;
+        this.fechaSalida = fechaSalida;
         this.horas_dia = horas_dia;
         this.dias_jornada = dias_jornada;
         this.nomina = nomina;
@@ -118,6 +120,14 @@ public class Empleado implements Serializable {
 
     public void setFechaIngreso(Date fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
+    }
+
+    public Date getFechaSalida() {
+        return fechaSalida;
+    }
+
+    public void setFechaSalida(Date fechaSalida) {
+        this.fechaSalida = fechaSalida;
     }
 
     public int getHoras_dia() {

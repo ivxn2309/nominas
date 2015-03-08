@@ -81,6 +81,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEmpsStatActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnNomStat">
           <Properties>
@@ -92,6 +95,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNomStatActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnDepaStat">
           <Properties>
@@ -103,6 +109,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDepaStatActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

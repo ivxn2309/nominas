@@ -21,6 +21,9 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
     public FormEmpleado() {
         //Se inicializan los componentes
         initComponents();
+        //Se oculta el panel de baja porque es usuario nuevo
+        tabbedPanel.remove(2);
+        
         //Se rellenan los puestos
         comboPuestos.removeAllItems();
         List<Puesto> puestos = new PuestoController().getAllPuestos();
@@ -157,6 +160,10 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         labelNominas = new javax.swing.JLabel();
         spinnerSalario = new javax.swing.JSpinner();
         labelSalario = new javax.swing.JLabel();
+        panelBajaEmpleado = new javax.swing.JPanel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
+        jLabel1 = new javax.swing.JLabel();
         buttonSave = new javax.swing.JButton();
         statusBar = new javax.swing.JLabel();
 
@@ -339,6 +346,40 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
 
         tabbedPanel.addTab("Datos de Trabajo", panelTrabajo);
 
+        jCheckBox1.setText("jCheckBox1");
+
+        jLabel1.setText("Aqui se calculará el finiquito");
+
+        javax.swing.GroupLayout panelBajaEmpleadoLayout = new javax.swing.GroupLayout(panelBajaEmpleado);
+        panelBajaEmpleado.setLayout(panelBajaEmpleadoLayout);
+        panelBajaEmpleadoLayout.setHorizontalGroup(
+            panelBajaEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBajaEmpleadoLayout.createSequentialGroup()
+                .addGroup(panelBajaEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBajaEmpleadoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(panelBajaEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBox1)
+                            .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelBajaEmpleadoLayout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(129, Short.MAX_VALUE))
+        );
+        panelBajaEmpleadoLayout.setVerticalGroup(
+            panelBajaEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBajaEmpleadoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(jLabel1)
+                .addContainerGap(99, Short.MAX_VALUE))
+        );
+
+        tabbedPanel.addTab("Dar de baja", panelBajaEmpleado);
+
         buttonSave.setText("Crear");
         buttonSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -464,6 +505,9 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox comboDepartamentos;
     private javax.swing.JComboBox comboNominas;
     private javax.swing.JComboBox comboPuestos;
+    private datechooser.beans.DateChooserCombo dateChooserCombo1;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelApellidos;
     private javax.swing.JLabel labelCURP;
     private javax.swing.JLabel labelDep;
@@ -477,6 +521,7 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel labelPuesto;
     private javax.swing.JLabel labelRFC;
     private javax.swing.JLabel labelSalario;
+    private javax.swing.JPanel panelBajaEmpleado;
     private javax.swing.JPanel panelBasico;
     private javax.swing.JPanel panelTrabajo;
     private javax.swing.JSpinner spinnerDias;

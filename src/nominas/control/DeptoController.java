@@ -28,4 +28,16 @@ public class DeptoController {
             return result.get(0);
         return null;
     }
+    
+    public int getMaxID() {
+        List<Departamento> deptos = getAllDepartamentos();
+        int max = 0;        
+        if(deptos != null)
+            for(Departamento dep : deptos){
+                int id = dep.getId_dep();
+                if (id > max) 
+                    max = id;
+            }        
+        return max;
+    }
 }

@@ -313,7 +313,10 @@ public class EmpleadosList extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
-        int ans = JOptionPane.showConfirmDialog(this, "Estas seguro de borrar (No se puede deshacer)", "Confirma", 2, 1);
+        int ans = JOptionPane.showConfirmDialog(this, 
+                "Estas seguro esto borrará todo registro de este empleado (No se puede deshacer)", 
+                "Confirma", 2, 1);
+        
         if(ans == 0){
             Empleado empleado = (Empleado)listEmployees.getSelectedValue();
             new SalarioController().deleteAllDeduccionesOf(empleado);
