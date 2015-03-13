@@ -1,5 +1,7 @@
 package nominas.control;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import nominas.entity.Empleado;
@@ -25,6 +27,21 @@ public class EmpleadoController {
     public List<Empleado> getAllEmpleados(){
         String hql = "From Empleado";
         return HibernateUtil.executeHQLQuery(hql);
+    }
+    
+    public List<Empleado> getAllActualEmpleados(){
+        String hql = "From Empleado";
+        List<Empleado> list = HibernateUtil.executeHQLQuery(hql);
+        List<Empleado> actuales = new ArrayList<>();
+        Date today = Calendar.getInstance().getTime();
+        list.stream().forEach(emp -> {
+            actuales.add(emp);
+            Date salida = emp.getFechaSalida();
+            if(salida != null && salida.before(today)){
+                actuales.remove(emp);
+            }
+        });
+        return actuales;
     }
     
     public Empleado getOldestEmployee(){

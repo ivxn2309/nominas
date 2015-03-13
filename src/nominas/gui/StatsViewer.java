@@ -49,6 +49,11 @@ public class StatsViewer extends javax.swing.JInternalFrame {
         btnEmpStat.setFocusable(false);
         btnEmpStat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEmpStat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEmpStat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEmpStatActionPerformed(evt);
+            }
+        });
         toolBar.add(btnEmpStat);
 
         btnEmpsStat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/users.png"))); // NOI18N
@@ -122,13 +127,18 @@ public class StatsViewer extends javax.swing.JInternalFrame {
         createGraphicWindow(panel);
     }//GEN-LAST:event_btnEmpsStatActionPerformed
 
+    private void btnEmpStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpStatActionPerformed
+        ChartPanel panel = generator.getEmployeeStatGraphic();
+        createGraphicWindow(panel);
+    }//GEN-LAST:event_btnEmpStatActionPerformed
+
     private void createGraphicWindow(ChartPanel panel) {
         JInternalFrame graphicWindow = new JInternalFrame();
         graphicWindow.getContentPane().add(panel);
         graphicWindow.setClosable(true);
         graphicWindow.setMaximizable(true);
         graphicWindow.setResizable(true);
-        graphicWindow.setTitle("Estadísticas Generales");
+        graphicWindow.setTitle("Estadísticas Gráficas");
         graphicWindow.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/stat.png")));
         graphicWindow.pack();
         graphicWindow.setVisible(true);

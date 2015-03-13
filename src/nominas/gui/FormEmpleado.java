@@ -56,7 +56,9 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         initComponents();
         isNewEmployee = false;
         this.empleado = empleado;
-        buttonSave.setText("Actualizar");
+        buttonSave.setText("Guardar");
+        this.setTitle("Modificar empleado");
+        chooserDateBaja.setEnabled(false);
         //Se cargan los datos del empleado
         loadEmployee(empleado);
     }
@@ -104,16 +106,22 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
             )
         );
         
-        // Se ajusta el tamaño del calendario
+        // Se ajusta el tamaño de los calendarios
         Dimension size = chooserDateIngreso.getCalendarPreferredSize();
         size.height += 35;
         size.width += 90;
         chooserDateIngreso.setCalendarPreferredSize(size);
+        chooserDateBaja.setCalendarPreferredSize(size);
         
         //Se ajusta la fecha mostrada
         Calendar cal = Calendar.getInstance();
         cal.setTime(empleado.getFechaIngreso());
         chooserDateIngreso.setSelectedDate(cal);
+        if(empleado.getFechaSalida() != null) {
+            cal.setTime(empleado.getFechaSalida());
+            checkBaja.setSelected(true);
+        }
+        chooserDateBaja.setSelectedDate(cal);
         
         //Se completan los campos de texto con los datos del empleado
         txtNombre.setText(empleado.getNombre());
@@ -161,8 +169,8 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         spinnerSalario = new javax.swing.JSpinner();
         labelSalario = new javax.swing.JLabel();
         panelBajaEmpleado = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        dateChooserCombo1 = new datechooser.beans.DateChooserCombo();
+        checkBaja = new javax.swing.JCheckBox();
+        chooserDateBaja = new datechooser.beans.DateChooserCombo();
         jLabel1 = new javax.swing.JLabel();
         buttonSave = new javax.swing.JButton();
         statusBar = new javax.swing.JLabel();
@@ -291,8 +299,8 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
                             .addComponent(spinnerSalario)
                             .addGroup(panelTrabajoLayout.createSequentialGroup()
                                 .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(labelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(labelSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(labelSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(labelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(panelTrabajoLayout.createSequentialGroup()
                         .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,7 +354,12 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
 
         tabbedPanel.addTab("Datos de Trabajo", panelTrabajo);
 
-        jCheckBox1.setText("jCheckBox1");
+        checkBaja.setText("Establecer fecha de baja");
+        checkBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBajaActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Aqui se calculará el finiquito");
 
@@ -359,8 +372,8 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
                     .addGroup(panelBajaEmpleadoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(panelBajaEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox1)
-                            .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(checkBaja)
+                            .addComponent(chooserDateBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelBajaEmpleadoLayout.createSequentialGroup()
                         .addGap(192, 192, 192)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -370,10 +383,10 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
             panelBajaEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBajaEmpleadoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jCheckBox1)
+                .addComponent(checkBaja)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dateChooserCombo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addComponent(chooserDateBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel1)
                 .addContainerGap(99, Short.MAX_VALUE))
         );
@@ -441,7 +454,12 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
             empleado.setDepartamento(((Departamento)comboDepartamentos.getSelectedItem()).getId_dep());
             empleado.setPuesto(((Puesto)comboPuestos.getSelectedItem()).getId_puesto());
             empleado.setNomina(((ListaNomina)comboNominas.getSelectedItem()).getId());
-
+            
+            //Si se va a especificar fecha de salida
+            if(checkBaja.isSelected()){
+                empleado.setFechaSalida(chooserDateBaja.getSelectedDate().getTime());
+            }
+            
             //Si es nuevo empleado, se guarda un nuevo registro
             if(isNewEmployee){
                 new EmpleadoController().saveNewEmpleado(empleado);
@@ -459,6 +477,11 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
             this.setVisible(false);
         }
     }//GEN-LAST:event_buttonSaveActionPerformed
+
+    private void checkBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBajaActionPerformed
+        boolean status = checkBaja.isSelected();
+        chooserDateBaja.setEnabled(status);
+    }//GEN-LAST:event_checkBajaActionPerformed
 
     private boolean validateFields(){
         if(txtNombre.getText().trim().length() < 2)
@@ -479,6 +502,10 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         //Valida si la fecha especificada es en el futuro
         else if(chooserDateIngreso.getSelectedDate().getTime().after(Calendar.getInstance().getTime()))
             statusBar.setText("La fecha de ingreso no puede ser en el futuro.");
+        else if(checkBaja.isSelected() && 
+                chooserDateBaja.getSelectedDate().getTime().
+                        before(chooserDateIngreso.getSelectedDate().getTime()))
+            statusBar.setText("La fecha de salida no puede ser antes del ingreso."); 
         else {
             return true;
         }
@@ -501,12 +528,12 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonSave;
+    private javax.swing.JCheckBox checkBaja;
+    private datechooser.beans.DateChooserCombo chooserDateBaja;
     private datechooser.beans.DateChooserCombo chooserDateIngreso;
     private javax.swing.JComboBox comboDepartamentos;
     private javax.swing.JComboBox comboNominas;
     private javax.swing.JComboBox comboPuestos;
-    private datechooser.beans.DateChooserCombo dateChooserCombo1;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelApellidos;
     private javax.swing.JLabel labelCURP;
