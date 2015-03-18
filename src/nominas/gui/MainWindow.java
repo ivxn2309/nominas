@@ -1,17 +1,9 @@
 package nominas.gui;
 
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Insets;
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
-import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-import javax.swing.border.Border;
-import javax.swing.plaf.DesktopPaneUI;
 import nominas.control.DeptoController;
 import nominas.control.EmpleadoController;
 import nominas.control.ListaNominaController;
@@ -92,6 +84,7 @@ public class MainWindow extends javax.swing.JFrame {
         menuInicio.setText("Inicio");
         menuInicio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
+        mExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/off.png"))); // NOI18N
         mExit.setText("Salir");
         mExit.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +99,7 @@ public class MainWindow extends javax.swing.JFrame {
         menuVer.setText("Ver");
         menuVer.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
 
+        mStat.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         mStat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/stat.png"))); // NOI18N
         mStat.setText("Estadisticas Gráficas");
         mStat.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +125,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         menuEmpleados.setText("Empleados");
 
-        mViewEmployee.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        mViewEmployee.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         mViewEmployee.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/view.png"))); // NOI18N
         mViewEmployee.setText("Lista de Empleados");
         mViewEmployee.addActionListener(new java.awt.event.ActionListener() {
@@ -155,6 +149,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         mModify.setText("Administrar");
 
+        mModifyDepartment.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
         mModifyDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/empresa.png"))); // NOI18N
         mModifyDepartment.setText("Departamentos");
         mModifyDepartment.addActionListener(new java.awt.event.ActionListener() {
@@ -164,6 +159,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
         mModify.add(mModifyDepartment);
 
+        mModifyPuesto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         mModifyPuesto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/chair.png"))); // NOI18N
         mModifyPuesto.setText("Puestos");
         mModifyPuesto.addActionListener(new java.awt.event.ActionListener() {
@@ -173,6 +169,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
         mModify.add(mModifyPuesto);
 
+        mModifyNominas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         mModifyNominas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/money.png"))); // NOI18N
         mModifyNominas.setText("Nóminas");
         mModifyNominas.addActionListener(new java.awt.event.ActionListener() {
@@ -186,6 +183,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         menuAyuda.setText("Ayuda");
 
+        mAbout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         mAbout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/info.png"))); // NOI18N
         mAbout.setText("Acerca de...");
         mAbout.addActionListener(new java.awt.event.ActionListener() {

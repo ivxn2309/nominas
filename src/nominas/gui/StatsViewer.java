@@ -1,16 +1,15 @@
 package nominas.gui;
 
-import java.awt.Panel;
-import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import nominas.control.StatController;
 import org.jfree.chart.ChartPanel;
 
 public class StatsViewer extends javax.swing.JInternalFrame {
-    private StatController generator;
+    private final StatController generator;
     public StatsViewer() {
         generator = new StatController();
         initComponents();
+        this.pack();
     }
 
     @SuppressWarnings("unchecked")
@@ -97,7 +96,7 @@ public class StatsViewer extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(toolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(toolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
