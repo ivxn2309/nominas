@@ -1,12 +1,18 @@
 package nominas.gui;
 
+import com.itextpdf.text.DocumentException;
 import java.awt.Toolkit;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import nominas.control.DeptoController;
 import nominas.control.EmpleadoController;
 import nominas.control.ListaNominaController;
+import nominas.control.PDFController;
 import nominas.control.PuestoController;
 import nominas.entity.Departamento;
 import nominas.entity.Empleado;
@@ -115,10 +121,20 @@ public class MainWindow extends javax.swing.JFrame {
 
         mListaRaya.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/lista.png"))); // NOI18N
         mListaRaya.setText("Listas de Raya");
+        mListaRaya.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mListaRayaActionPerformed(evt);
+            }
+        });
         menuGenerar.add(mListaRaya);
 
         mReciboNomina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/tabla.png"))); // NOI18N
         mReciboNomina.setText("Recibos de Nomina");
+        mReciboNomina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mReciboNominaActionPerformed(evt);
+            }
+        });
         menuGenerar.add(mReciboNomina);
 
         menuBar.add(menuGenerar);
@@ -266,6 +282,44 @@ public class MainWindow extends javax.swing.JFrame {
         desktopPane.add(viewer);
         viewer.moveToFront();
     }//GEN-LAST:event_mStatActionPerformed
+
+    private void mListaRayaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mListaRayaActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Guardar Lista de Raya");
+        int status = fileChooser.showSaveDialog(this);
+        
+        File file = fileChooser.getSelectedFile(); 
+        if(status == JFileChooser.APPROVE_OPTION){
+            String filename = file.toString();
+            if(!filename.endsWith(".pdf"))
+                filename = filename.concat(".pdf");
+            PDFController generator = new PDFController(filename);
+            try {
+                generator.createPdf(PDFController.LISTA_DE_RAYA);
+            } catch (IOException | DocumentException ex) {
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_mListaRayaActionPerformed
+
+    private void mReciboNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mReciboNominaActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Guardar Recibo de Nomina");
+        int status = fileChooser.showSaveDialog(this);
+        
+        File file = fileChooser.getSelectedFile(); 
+        if(status == JFileChooser.APPROVE_OPTION){
+            String filename = file.toString();
+            if(!filename.endsWith(".pdf"))
+                filename = filename.concat(".pdf");
+            PDFController generator = new PDFController(filename);
+            try {
+                generator.createPdf(PDFController.RECIBO_DE_NOMINA);
+            } catch (IOException | DocumentException ex) {
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_mReciboNominaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;

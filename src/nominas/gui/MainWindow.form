@@ -80,6 +80,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Listas de Raya"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mListaRayaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mReciboNomina">
               <Properties>
@@ -88,6 +91,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Recibos de Nomina"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mReciboNominaActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
