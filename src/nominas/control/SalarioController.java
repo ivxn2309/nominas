@@ -26,7 +26,7 @@ public class SalarioController {
     
     public List<Percepcion> getAllCurrentPercepcionesOf(Empleado empleado) {
         String hql = "FROM Percepcion WHERE empleado='" + 
-                empleado.getId_empleado() + "' AND fin IS NULL";
+                empleado.getId_empleado() + "' AND (fin IS NULL OR fin > current_date())";
         return HibernateUtil.executeHQLQuery(hql);
     }
     
@@ -48,7 +48,7 @@ public class SalarioController {
     
     public List<Deduccion> getAllCurrentDeduccionesOf(Empleado empleado) {
         String hql = "FROM Deduccion WHERE empleado='" + 
-                empleado.getId_empleado() + "' AND fin IS NULL";
+                empleado.getId_empleado() + "' AND (fin IS NULL OR fin > current_date())";
         return HibernateUtil.executeHQLQuery(hql);
     }
     
