@@ -3,6 +3,7 @@ package nominas.gui;
 import com.itextpdf.text.DocumentException;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -296,9 +297,15 @@ public class MainWindow extends javax.swing.JFrame {
             PDFController generator = new PDFController(filename);
             try {
                 generator.createPdf(PDFController.LISTA_DE_RAYA);
-            } catch (IOException | DocumentException ex) {
-                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
             }
+            catch(FileNotFoundException fnfe) {
+                JOptionPane.showMessageDialog(this, "El archivo se encuentra abierto", "Error al escribir", JOptionPane.ERROR_MESSAGE);
+            }
+            catch (IOException | DocumentException ex) {
+                //Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "El archivo se encuentra abierto", "Error al escribir", JOptionPane.ERROR_MESSAGE);
+            }
+            JOptionPane.showMessageDialog(this, "El PDF fue generado correctamente", "Guardado", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_mListaRayaActionPerformed
 
@@ -315,8 +322,14 @@ public class MainWindow extends javax.swing.JFrame {
             PDFController generator = new PDFController(filename);
             try {
                 generator.createPdf(PDFController.RECIBO_DE_NOMINA);
-            } catch (IOException | DocumentException ex) {
-                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "El PDF fue generado correctamente", "Guardado", JOptionPane.INFORMATION_MESSAGE);
+            }
+            catch(FileNotFoundException fnfe) {
+                JOptionPane.showMessageDialog(this, "El archivo se encuentra abierto", "Error al escribir", JOptionPane.ERROR_MESSAGE);
+            }
+            catch (IOException | DocumentException ex) {
+                //Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "El archivo se encuentra abierto", "Error al escribir", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_mReciboNominaActionPerformed

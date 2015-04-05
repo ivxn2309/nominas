@@ -5,14 +5,21 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
+import sun.awt.FwDispatcher;
 public class Fecha implements Serializable {
     private Date fecha;
     private Calendar calendar;
+    public int dia;
+    public int mes;
+    public int year;
 
     public Fecha(Date fecha) {
         this.fecha = fecha;
         calendar = Calendar.getInstance();
         calendar.setTime(fecha);
+        dia = calendar.get(Calendar.DATE);
+        mes = calendar.get(Calendar.MONTH) + 1;
+        year = calendar.get(Calendar.YEAR);
     }
     
     private String translateMonth(String month) {
@@ -47,7 +54,30 @@ public class Fecha implements Serializable {
     public Date getFecha() {
         return fecha;
     }
+    
+    public String getShortRepr(String div, boolean inv){
+        if(inv) return year + div + mes + div + dia;
+        return dia + div + mes + div + year;
+    }
 
+    public Fecha [] getPeriodInterval(){
+        Fecha inicio = new Fecha(fecha);
+        Fecha fin = new Fecha(fecha);
+        if(dia < 16) {
+            inicio.dia = 1;
+            fin.dia = 15;
+        } 
+        else {
+            inicio.dia = 16;
+            fin.dia = calendar.getActualMaximum(Calendar.DATE);
+        }            
+        return new Fecha[] {inicio, fin};
+    }
+    
+    public Calendar getCalendar() {
+        return calendar;
+    }
+        
     public void setFecha(Date fecha) {
         this.fecha = fecha;
         calendar = Calendar.getInstance();

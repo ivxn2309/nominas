@@ -4,6 +4,7 @@ import java.util.List;
 import nominas.entity.Deduccion;
 import nominas.entity.Empleado;
 import nominas.entity.Percepcion;
+import nominas.util.Fecha;
 import nominas.util.HibernateUtil;
 
 public class SalarioController {
@@ -26,6 +27,22 @@ public class SalarioController {
     public List<Percepcion> getAllCurrentPercepcionesOf(Empleado empleado) {
         String hql = "FROM Percepcion WHERE empleado='" + 
                 empleado.getId_empleado() + "' AND fin IS NULL";
+        return HibernateUtil.executeHQLQuery(hql);
+    }
+    
+    public List<Percepcion> getPercepcionesOf(Empleado empleado, Fecha fecha) {
+        String start = fecha.getPeriodInterval()[0].getShortRepr("/", true);
+        String end = fecha.getPeriodInterval()[1].getShortRepr("/", true);
+        String hql = "FROM Percepcion WHERE empleado=" + 
+                empleado.getId_empleado() + " AND fecha < '" + end + "' AND (fin IS NULL OR fin > '" + start + "')";
+        return HibernateUtil.executeHQLQuery(hql);
+    }
+    
+    public List<Deduccion> getDeduccionesOf(Empleado empleado, Fecha fecha) {
+        String start = fecha.getPeriodInterval()[0].getShortRepr("/", true);
+        String end = fecha.getPeriodInterval()[1].getShortRepr("/", true);
+        String hql = "FROM Deduccion WHERE empleado='" + 
+                empleado.getId_empleado() + "' AND fecha < '" + end + "' AND (fin IS NULL OR fin > '" + start + "')";
         return HibernateUtil.executeHQLQuery(hql);
     }
     
