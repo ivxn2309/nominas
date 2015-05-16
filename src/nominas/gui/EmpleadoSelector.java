@@ -7,15 +7,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import nominas.control.EmpleadoController;
 import nominas.control.ListaNominaController;
 import nominas.control.PDFController;
+import nominas.control.StatController;
 import nominas.entity.Empleado;
 import nominas.entity.ListaNomina;
+import org.jfree.chart.ChartPanel;
 
 public class EmpleadoSelector extends javax.swing.JInternalFrame {
-
+    private boolean graphics;
     public EmpleadoSelector() {
         initComponents();
         new ListaNominaController().getAllTypesOfNomina().stream().forEach((nom) -> {
@@ -31,6 +34,26 @@ public class EmpleadoSelector extends javax.swing.JInternalFrame {
         empList.setListData(emps.toArray());
         
         generateButton.setEnabled(false);
+        graphics = false;
+    }
+    
+    public EmpleadoSelector(String tite) {
+        initComponents();
+        new ListaNominaController().getAllTypesOfNomina().stream().forEach((nom) -> {
+            nominasBox.addItem(nom);
+        });
+        
+        ListaNomina nomina = (ListaNomina)nominasBox.getSelectedItem();
+        List<Empleado> empleados = new EmpleadoController().getAllActualEmpleados();
+        List<Empleado> emps = new ArrayList<>();
+        empleados.stream().filter((emp) -> (emp.getNomina() == nomina.getId())).forEach((emp) -> {
+            emps.add(emp);
+        });
+        empList.setListData(emps.toArray());
+        
+        generateButton.setEnabled(false);
+        this.setTitle(title);
+        graphics = true;
     }
 
     @SuppressWarnings("unchecked")
@@ -124,6 +147,11 @@ public class EmpleadoSelector extends javax.swing.JInternalFrame {
 
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
         List<Empleado> sel = empList.getSelectedValuesList();
+        if(graphics) {
+            ChartPanel panel = new StatController().getEmployeeStatGraphic(sel);
+            createGraphicWindow(panel);
+            return;
+        }
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Guardar Recibos de Empleados");
         int status = fileChooser.showSaveDialog(this);
@@ -170,6 +198,19 @@ public class EmpleadoSelector extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nominasBoxItemStateChanged
 
 
+    private void createGraphicWindow(ChartPanel panel) {
+        JInternalFrame graphicWindow = new JInternalFrame();
+        graphicWindow.getContentPane().add(panel);
+        graphicWindow.setClosable(true);
+        graphicWindow.setMaximizable(true);
+        graphicWindow.setResizable(true);
+        graphicWindow.setTitle("Estadísticas Gráficas");
+        graphicWindow.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/stat.png")));
+        graphicWindow.pack();
+        graphicWindow.setVisible(true);
+        this.getParent().add(graphicWindow);
+        graphicWindow.moveToFront();
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList empList;
     private javax.swing.JButton generateButton;

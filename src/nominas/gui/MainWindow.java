@@ -307,7 +307,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_mModifyNominasActionPerformed
 
     private void mStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mStatActionPerformed
-        StatsViewer viewer = new StatsViewer();
+        StatsViewer viewer = new StatsViewer(desktopPane);
         viewer.setVisible(true);
         desktopPane.add(viewer);
         viewer.moveToFront();

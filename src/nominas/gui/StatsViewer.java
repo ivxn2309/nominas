@@ -1,15 +1,19 @@
 package nominas.gui;
 
+import java.awt.Component;
+import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import nominas.control.StatController;
 import org.jfree.chart.ChartPanel;
 
 public class StatsViewer extends javax.swing.JInternalFrame {
     private final StatController generator;
-    public StatsViewer() {
+    private JDesktopPane desktopPane;
+    public StatsViewer(JDesktopPane jdp) {
         generator = new StatController();
         initComponents();
         this.pack();
+        desktopPane = jdp;
     }
 
     @SuppressWarnings("unchecked")
@@ -96,7 +100,7 @@ public class StatsViewer extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(toolBar, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
+            .addComponent(toolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,13 +126,17 @@ public class StatsViewer extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNomStatActionPerformed
 
     private void btnEmpsStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpsStatActionPerformed
-        ChartPanel panel = generator.getEmployeesStatGraphic();
-        createGraphicWindow(panel);
+        NominaSelector selector = new NominaSelector("Gráfica de empleados en:");
+        selector.setVisible(true);
+        this.getParent().add("NominaSelector1", selector);
+        selector.moveToFront();
     }//GEN-LAST:event_btnEmpsStatActionPerformed
 
     private void btnEmpStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpStatActionPerformed
-        ChartPanel panel = generator.getEmployeeStatGraphic();
-        createGraphicWindow(panel);
+        EmpleadoSelector selector = new EmpleadoSelector("Gráfica de empleados");
+        selector.setVisible(true);
+        this.getParent().add("EmpleadoSelector1", selector);
+        selector.moveToFront();
     }//GEN-LAST:event_btnEmpStatActionPerformed
 
     private void createGraphicWindow(ChartPanel panel) {

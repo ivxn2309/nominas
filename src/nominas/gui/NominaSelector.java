@@ -5,18 +5,33 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.swing.JFileChooser;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import nominas.control.ListaNominaController;
 import nominas.control.PDFController;
+import nominas.control.StatController;
 import nominas.entity.ListaNomina;
+import org.jfree.chart.ChartPanel;
 
 public class NominaSelector extends javax.swing.JInternalFrame {
+
+    private final boolean graphics;
 
     public NominaSelector() {
         initComponents();
         new ListaNominaController().getAllTypesOfNomina().stream().forEach((nom) -> {
             nominasBox.addItem(nom);
         });
+        graphics = false;
+    }
+
+    public NominaSelector(String title) {
+        initComponents();
+        new ListaNominaController().getAllTypesOfNomina().stream().forEach((nom) -> {
+            nominasBox.addItem(nom);
+        });
+        this.setTitle(title);
+        graphics = true;
     }
 
     @SuppressWarnings("unchecked")
@@ -77,31 +92,48 @@ public class NominaSelector extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
-        ListaNomina sel = (ListaNomina)nominasBox.getSelectedItem();
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Guardar Recibos de " + sel.getNombre());
-        int status = fileChooser.showSaveDialog(this);
-        
-        File file = fileChooser.getSelectedFile(); 
-        if(status == JFileChooser.APPROVE_OPTION){
-            String filename = file.toString();
-            if(!filename.endsWith(".pdf"))
-                filename = filename.concat(".pdf");
-            PDFController generator = new PDFController(filename);
-            try {
-                generator.createPdf(PDFController.RECIBO_DE_NOMINA, sel);
-                JOptionPane.showMessageDialog(this, "El PDF fue generado correctamente", "Guardado", JOptionPane.INFORMATION_MESSAGE);
-            }
-            catch(FileNotFoundException fnfe) {
-                JOptionPane.showMessageDialog(this, "El archivo se encuentra abierto", "Error al escribir", JOptionPane.ERROR_MESSAGE);
-            }
-            catch (IOException | DocumentException ex) {
-                //Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(this, "El archivo se encuentra abierto", "Error al escribir", JOptionPane.ERROR_MESSAGE);
+        ListaNomina sel = (ListaNomina) nominasBox.getSelectedItem();
+        if (graphics) {
+            ChartPanel panel = new StatController().getEmployeesStatGraphic(sel);
+            createGraphicWindow(panel);
+        } else {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Guardar Recibos de " + sel.getNombre());
+            int status = fileChooser.showSaveDialog(this);
+
+            File file = fileChooser.getSelectedFile();
+            if (status == JFileChooser.APPROVE_OPTION) {
+                String filename = file.toString();
+                if (!filename.endsWith(".pdf")) {
+                    filename = filename.concat(".pdf");
+                }
+                PDFController generator = new PDFController(filename);
+                try {
+                    generator.createPdf(PDFController.RECIBO_DE_NOMINA, sel);
+                    JOptionPane.showMessageDialog(this, "El PDF fue generado correctamente", "Guardado", JOptionPane.INFORMATION_MESSAGE);
+                } catch (FileNotFoundException fnfe) {
+                    JOptionPane.showMessageDialog(this, "El archivo se encuentra abierto", "Error al escribir", JOptionPane.ERROR_MESSAGE);
+                } catch (IOException | DocumentException ex) {
+                    //Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(this, "El archivo se encuentra abierto", "Error al escribir", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
     }//GEN-LAST:event_generateButtonActionPerformed
 
+    private void createGraphicWindow(ChartPanel panel) {
+        JInternalFrame graphicWindow = new JInternalFrame();
+        graphicWindow.getContentPane().add(panel);
+        graphicWindow.setClosable(true);
+        graphicWindow.setMaximizable(true);
+        graphicWindow.setResizable(true);
+        graphicWindow.setTitle("Estadísticas Gráficas");
+        graphicWindow.setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/stat.png")));
+        graphicWindow.pack();
+        graphicWindow.setVisible(true);
+        this.getParent().add(graphicWindow);
+        graphicWindow.moveToFront();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton generateButton;
