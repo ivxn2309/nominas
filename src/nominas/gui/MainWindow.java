@@ -1,6 +1,7 @@
 package nominas.gui;
 
 import com.itextpdf.text.DocumentException;
+import java.awt.Component;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -53,7 +54,10 @@ public class MainWindow extends javax.swing.JFrame {
         mStat = new javax.swing.JMenuItem();
         menuGenerar = new javax.swing.JMenu();
         mListaRaya = new javax.swing.JMenuItem();
-        mReciboNomina = new javax.swing.JMenuItem();
+        menuReciboDeNominas = new javax.swing.JMenu();
+        mReciboUnico = new javax.swing.JMenuItem();
+        mReciboPorNomina = new javax.swing.JMenuItem();
+        mReciboGlobal = new javax.swing.JMenuItem();
         menuEmpleados = new javax.swing.JMenu();
         mViewEmployee = new javax.swing.JMenuItem();
         mAddEmployee = new javax.swing.JMenuItem();
@@ -118,6 +122,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         menuGenerar.setText("Generar");
 
+        mListaRaya.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
         mListaRaya.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/lista.png"))); // NOI18N
         mListaRaya.setText("Listas de Raya");
         mListaRaya.addActionListener(new java.awt.event.ActionListener() {
@@ -127,14 +132,40 @@ public class MainWindow extends javax.swing.JFrame {
         });
         menuGenerar.add(mListaRaya);
 
-        mReciboNomina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/tabla.png"))); // NOI18N
-        mReciboNomina.setText("Recibos de Nomina");
-        mReciboNomina.addActionListener(new java.awt.event.ActionListener() {
+        menuReciboDeNominas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/tabla.png"))); // NOI18N
+        menuReciboDeNominas.setText("Recibos de Nomina");
+
+        mReciboUnico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK));
+        mReciboUnico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/view.png"))); // NOI18N
+        mReciboUnico.setText("Empleado");
+        mReciboUnico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mReciboNominaActionPerformed(evt);
+                mReciboUnicoActionPerformed(evt);
             }
         });
-        menuGenerar.add(mReciboNomina);
+        menuReciboDeNominas.add(mReciboUnico);
+
+        mReciboPorNomina.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.SHIFT_MASK));
+        mReciboPorNomina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/group-users.png"))); // NOI18N
+        mReciboPorNomina.setText("Nomina");
+        mReciboPorNomina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mReciboPorNominaActionPerformed(evt);
+            }
+        });
+        menuReciboDeNominas.add(mReciboPorNomina);
+
+        mReciboGlobal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.SHIFT_MASK));
+        mReciboGlobal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/users2.png"))); // NOI18N
+        mReciboGlobal.setText("Global");
+        mReciboGlobal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mReciboGlobalActionPerformed(evt);
+            }
+        });
+        menuReciboDeNominas.add(mReciboGlobal);
+
+        menuGenerar.add(menuReciboDeNominas);
 
         menuBar.add(menuGenerar);
 
@@ -283,33 +314,22 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_mStatActionPerformed
 
     private void mListaRayaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mListaRayaActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Guardar Lista de Raya");
-        int status = fileChooser.showSaveDialog(this);
-        
-        File file = fileChooser.getSelectedFile(); 
-        if(status == JFileChooser.APPROVE_OPTION){
-            String filename = file.toString();
-            if(!filename.endsWith(".pdf"))
-                filename = filename.concat(".pdf");
-            PDFController generator = new PDFController(filename);
-            try {
-                generator.createPdf(PDFController.LISTA_DE_RAYA);
+        RayaNominaSelector nomS = new RayaNominaSelector();
+        nomS.setVisible(true);
+        boolean flag = true;
+        for(Component com : desktopPane.getComponents()){
+            if(com.getName().equalsIgnoreCase("RayaNominaSelector")){
+                flag = false;
+                break;
             }
-            catch(FileNotFoundException fnfe) {
-                JOptionPane.showMessageDialog(this, "El archivo se encuentra abierto", "Error al escribir", JOptionPane.ERROR_MESSAGE);
-            }
-            catch (IOException | DocumentException ex) {
-                //Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(this, "El archivo se encuentra abierto", "Error al escribir", JOptionPane.ERROR_MESSAGE);
-            }
-            JOptionPane.showMessageDialog(this, "El PDF fue generado correctamente", "Guardado", JOptionPane.INFORMATION_MESSAGE);
         }
+        if(flag)
+            desktopPane.add("RayaNominaSelector", nomS);
     }//GEN-LAST:event_mListaRayaActionPerformed
 
-    private void mReciboNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mReciboNominaActionPerformed
+    private void mReciboGlobalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mReciboGlobalActionPerformed
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Guardar Recibo de Nomina");
+        fileChooser.setDialogTitle("Guardar Recibos de todas las Nominas");
         int status = fileChooser.showSaveDialog(this);
         
         File file = fileChooser.getSelectedFile(); 
@@ -330,7 +350,35 @@ public class MainWindow extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "El archivo se encuentra abierto", "Error al escribir", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_mReciboNominaActionPerformed
+    }//GEN-LAST:event_mReciboGlobalActionPerformed
+
+    private void mReciboPorNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mReciboPorNominaActionPerformed
+        NominaSelector nomS = new NominaSelector();
+        nomS.setVisible(true);
+        boolean flag = true;
+        for(Component com : desktopPane.getComponents()){
+            if(com.getName().equalsIgnoreCase("NominaSelector")){
+                flag = false;
+                break;
+            }
+        }
+        if(flag)
+            desktopPane.add("NominaSelector", nomS);
+    }//GEN-LAST:event_mReciboPorNominaActionPerformed
+
+    private void mReciboUnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mReciboUnicoActionPerformed
+        EmpleadoSelector empS = new EmpleadoSelector();
+        empS.setVisible(true);
+        boolean flag = true;
+        for(Component com : desktopPane.getComponents()){
+            if(com.getName().equalsIgnoreCase("EmpleadoSelector")){
+                flag = false;
+                break;
+            }
+        }
+        if(flag)
+            desktopPane.add("EmpleadoSelector", empS);
+    }//GEN-LAST:event_mReciboUnicoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
@@ -343,7 +391,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem mModifyDepartment;
     private javax.swing.JMenuItem mModifyNominas;
     private javax.swing.JMenuItem mModifyPuesto;
-    private javax.swing.JMenuItem mReciboNomina;
+    private javax.swing.JMenuItem mReciboGlobal;
+    private javax.swing.JMenuItem mReciboPorNomina;
+    private javax.swing.JMenuItem mReciboUnico;
     private javax.swing.JMenuItem mStat;
     private javax.swing.JMenuItem mViewEmployee;
     private javax.swing.JMenu menuAyuda;
@@ -351,6 +401,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu menuEmpleados;
     private javax.swing.JMenu menuGenerar;
     private javax.swing.JMenu menuInicio;
+    private javax.swing.JMenu menuReciboDeNominas;
     private javax.swing.JMenu menuVer;
     // End of variables declaration//GEN-END:variables
 }

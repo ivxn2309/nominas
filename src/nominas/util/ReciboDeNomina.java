@@ -23,7 +23,6 @@ public class ReciboDeNomina {
     private final double neto;
     private String deducciones;
     private String footer;
-    private String isr;
 
     public ReciboDeNomina(Empleado empleado, Fecha fecha) {
         this.empleado = empleado;
@@ -36,7 +35,6 @@ public class ReciboDeNomina {
         initDeducc();
         neto = sumaPer - sumaDed;
         initFooter();
-        initISR();
     }
 
     private void initHead() {
@@ -65,7 +63,6 @@ public class ReciboDeNomina {
         cadena.append("Nombre: ").append(empleado.toString()).append("\n");
         cadena.append("Depto: ").append(new DeptoController().getDepartamento(empleado.getDepartamento()).getNombre()).append("\n");
         cadena.append("C.U.R.P.: ").append(empleado.getCurp()).append("\n");
-        cadena.append("S.B.C.: ").append("0.00").append("\n");
         cadena.append("Cotiza: ").append("Fijo").append("\n");
         cadena.append("Fecha ingr. : ").append(new Fecha(empleado.getFechaIngreso()).toString());
         cadena.append("Sdo. Día: ").append(empleado.getSalario()).append("\n");
@@ -77,7 +74,6 @@ public class ReciboDeNomina {
         cadena.append("R.F.C.: ").append(empleado.getRfc()).append("\n");
         cadena.append("Reg. IMSS: ").append(empleado.getImss()).append("\n");
         cadena.append("Puesto: ").append(new PuestoController().getPuesto(empleado.getPuesto()).getNombre()).append("\n");
-        cadena.append("Sdo. Int.: ").append("0.00").append("\n");
         cadena.append("Hrs. x Día: ").append(empleado.getHoras_dia()).append("\n");
         cadena.append("Días Trab.: ").append(empleado.getDias_jornada()).append("\n");
         cadena.append("Hrs. x Per.: ").append(empleado.getHoras_dia() * empleado.getDias_jornada()).append("\n");
@@ -86,7 +82,7 @@ public class ReciboDeNomina {
 
     private void initPercep() {
         List<Percepcion> lista = new SalarioController().getPercepcionesOf(empleado, fecha);
-        Percepcion salario = new Percepcion(0, "Salario", 0, empleado.getSalario(), null, null);
+        Percepcion salario = new Percepcion(0, "Salario", 0, empleado.getSalario() * empleado.getDias_jornada(), null, null);
         
         StringBuilder cadena = new StringBuilder();
         sumaPer = salario.getCantidad();
@@ -122,10 +118,6 @@ public class ReciboDeNomina {
                 .append("Fecha: ").append(fecha.toString())
                 .append("                    Firma: _________________________");
         footer = cadena.toString();
-    }
-
-    private void initISR() {
-        isr = "ISR antes de SUB $ " + 159.81 + ";     SUB Aplicado $ " + 160.35;
     }
 
     // =========================================================================
@@ -175,10 +167,6 @@ public class ReciboDeNomina {
 
     public String getFooter() {
         return footer;
-    }
-
-    public String getIsr() {
-        return isr;
     }
 
 }

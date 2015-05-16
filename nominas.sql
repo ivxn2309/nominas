@@ -14,9 +14,11 @@ CREATE DATABASE `nominas` CHARACTER SET utf8 COLLATE utf8_general_ci;
 GRANT ALL ON `nominas`.* TO `gestor_nominas`@localhost IDENTIFIED BY 'nomina2015';
 FLUSH PRIVILEGES;
 
+use `nominas`;
 -- ------------------------------------------------
 -- DROPS
 -- ------------------------------------------------
+DROP TABLE IF EXISTS Institucion;
 DROP TABLE IF EXISTS Percepciones;
 DROP TABLE IF EXISTS Deducciones;
 DROP TABLE IF EXISTS Empleados;
@@ -119,7 +121,27 @@ CREATE TABLE IF NOT EXISTS Percepciones (
 );
 
 -- ------------------------------------------------
+-- Institucion
+-- ------------------------------------------------
+DROP TABLE IF EXISTS Institucion;
+CREATE TABLE IF NOT EXISTS Institucion (
+    id INT(1) NOT NULL,    
+    name VARCHAR(100) NOT NULL,
+    address VARCHAR(100) NOT NULL,
+    imss VARCHAR(100) NOT NULL,
+    rfc VARCHAR(100) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+-- ------------------------------------------------
 -- Volcado de datos
+-- ------------------------------------------------
+-- Institucion
+-- ------------------------------------------------
+INSERT INTO Institucion VALUES(1, "H. Ayuntamiento de Villanueva 2013 - 2016", 
+"Plaza Principal No.1; Col. Centro; Villanueva, Zac.",
+"R0910080109",
+"MVI-650101-HF1");
 -- ------------------------------------------------
 -- Usuario
 -- ------------------------------------------------

@@ -52,6 +52,9 @@ public class Fecha implements Serializable {
     }
 
     public Date getFecha() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(year, mes-1, dia);
+        this.fecha = cal.getTime();
         return fecha;
     }
     
@@ -74,7 +77,26 @@ public class Fecha implements Serializable {
         return new Fecha[] {inicio, fin};
     }
     
+    public int getFortnightYear() {
+        Fecha iterator = new Fecha(this.getFecha());
+        iterator.dia = 15;
+        iterator.mes = 1;
+        int fortnight = 1;
+        while(this.getFecha().after(iterator.getFecha()) && iterator.mes < 12){
+            fortnight++;
+            if(iterator.dia == 15){
+                iterator.dia = iterator.getCalendar().getActualMaximum(Calendar.DAY_OF_MONTH);
+            }
+            else {
+                iterator.dia = 15;
+                iterator.mes++;
+            }
+        }        
+        return fortnight;
+    }
+    
     public Calendar getCalendar() {
+        calendar.set(year, mes-1, dia);
         return calendar;
     }
         

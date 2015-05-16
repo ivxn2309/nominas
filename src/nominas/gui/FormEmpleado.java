@@ -58,9 +58,9 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         this.empleado = empleado;
         buttonSave.setText("Guardar");
         this.setTitle("Modificar empleado");
-        chooserDateBaja.setEnabled(false);
         //Se cargan los datos del empleado
         loadEmployee(empleado);
+        chooserDateBaja.setEnabled(checkBaja.isSelected());
     }
     
     private void loadEmployee(Empleado empleado){
@@ -459,6 +459,8 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
             if(checkBaja.isSelected()){
                 empleado.setFechaSalida(chooserDateBaja.getSelectedDate().getTime());
             }
+            else
+                empleado.setFechaSalida(null);
             
             //Si es nuevo empleado, se guarda un nuevo registro
             if(isNewEmployee){

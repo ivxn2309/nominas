@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class catalog="nominas" name="nominas.entity.Institucion" optimistic-lock="version" table="institucion">
+    <id name="id" type="int">
+      <column length="1" name="id"/>
+      <generator class="assigned"/>
+    </id>
+    <property name="name" type="string">
+      <column length="100" name="name" not-null="true"/>
+    </property>
+    <property name="address" type="string">
+      <column length="100" name="address" not-null="true"/>
+    </property>
+    <property name="imss" type="string">
+      <column length="100" name="imss" not-null="true"/>
+    </property>
+    <property name="rfc" type="string">
+      <column length="100" name="rfc" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

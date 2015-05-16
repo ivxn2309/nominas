@@ -6,7 +6,7 @@ import nominas.gui.MainWindow;
 
 public class Nominas {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main (String[] args) throws InterruptedException {
         // Se configura Look and Feel con Nimbus
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
