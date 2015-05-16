@@ -1,8 +1,6 @@
 package nominas.util;
 
-import java.util.Calendar;
 import java.util.List;
-import nominas.control.DeptoController;
 import nominas.control.PuestoController;
 import nominas.control.SalarioController;
 import nominas.entity.Deduccion;

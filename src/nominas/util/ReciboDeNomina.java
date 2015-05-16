@@ -3,10 +3,12 @@ package nominas.util;
 import java.util.Calendar;
 import java.util.List;
 import nominas.control.DeptoController;
+import nominas.control.InstitucionController;
 import nominas.control.PuestoController;
 import nominas.control.SalarioController;
 import nominas.entity.Deduccion;
 import nominas.entity.Empleado;
+import nominas.entity.Institucion;
 import nominas.entity.Percepcion;
 
 public class ReciboDeNomina {
@@ -38,10 +40,11 @@ public class ReciboDeNomina {
     }
 
     private void initHead() {
-        String enterprise = "H.Ayuntamiento de Villanueva 2013 - 2016";
-        String address = "Plaza Principal Num 1, Villanueva, Zacatecas";
-        String rfc = "R.F.C.:  MVI650101HF1";
-        String imss = "Reg. IMSS:  R091008010";
+        Institucion inst = new InstitucionController().get();
+        String enterprise = inst.getName();
+        String address = inst.getAddress();
+        String rfc = inst.getRfc();
+        String imss = inst.getImss();
         head = enterprise + "\n" + address + "\n" + rfc + "   " + imss;
     }
 
