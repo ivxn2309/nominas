@@ -11,6 +11,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import nominas.control.DeptoController;
 import nominas.control.EmpleadoController;
+import nominas.control.InstitucionController;
 import nominas.control.ListaNominaController;
 import nominas.control.PDFController;
 import nominas.control.PuestoController;
@@ -31,6 +32,7 @@ public class MainWindow extends javax.swing.JFrame {
             initComponents();
             desktopPane.setBorder(new BackImage());
             this.setExtendedState(MainWindow.MAXIMIZED_BOTH);
+            this.setTitle("Sistema de Nominas ("+new InstitucionController().get().getName()+")");
         }
         catch(ExceptionInInitializerError eie){
             //Si no se pudo obtener acceso a la base de datos se manda un aviso
@@ -62,6 +64,7 @@ public class MainWindow extends javax.swing.JFrame {
         mViewEmployee = new javax.swing.JMenuItem();
         mAddEmployee = new javax.swing.JMenuItem();
         mModify = new javax.swing.JMenu();
+        menuInst = new javax.swing.JMenuItem();
         mModifyDepartment = new javax.swing.JMenuItem();
         mModifyPuesto = new javax.swing.JMenuItem();
         mModifyNominas = new javax.swing.JMenuItem();
@@ -195,8 +198,19 @@ public class MainWindow extends javax.swing.JFrame {
 
         mModify.setText("Administrar");
 
+        menuInst.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
+        menuInst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/empresa.png"))); // NOI18N
+        menuInst.setText("Empresa");
+        menuInst.setToolTipText("Cambia los daos básicos de la empresa que usa este software");
+        menuInst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuInstActionPerformed(evt);
+            }
+        });
+        mModify.add(menuInst);
+
         mModifyDepartment.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
-        mModifyDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/empresa.png"))); // NOI18N
+        mModifyDepartment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/department.png"))); // NOI18N
         mModifyDepartment.setText("Departamentos");
         mModifyDepartment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -380,6 +394,20 @@ public class MainWindow extends javax.swing.JFrame {
             desktopPane.add("EmpleadoSelector", empS);
     }//GEN-LAST:event_mReciboUnicoActionPerformed
 
+    private void menuInstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuInstActionPerformed
+        InstModifier mod = new InstModifier();
+        mod.setVisible(true);
+        boolean flag = true;
+        for(Component com : desktopPane.getComponents()){
+            if(com.getName().equalsIgnoreCase("InstModifier")){
+                flag = false;
+                break;
+            }
+        }
+        if(flag)
+            desktopPane.add("InstModifier", mod);
+    }//GEN-LAST:event_menuInstActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem jMenuItem1;
@@ -401,6 +429,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu menuEmpleados;
     private javax.swing.JMenu menuGenerar;
     private javax.swing.JMenu menuInicio;
+    private javax.swing.JMenuItem menuInst;
     private javax.swing.JMenu menuReciboDeNominas;
     private javax.swing.JMenu menuVer;
     // End of variables declaration//GEN-END:variables
