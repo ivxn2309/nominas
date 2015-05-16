@@ -54,7 +54,8 @@ public class ReciboDeNomina {
             inicio = 1;
             fin = 15;
         }
-        period = "Recibo de nomina del " + inicio + " al " + fin + " de " + fecha.mes + " de " + fecha.year;
+        Fecha f = new Fecha(fin, fecha.mes, fecha.year);
+        period = "Recibo de nomina del " + inicio + " al " + f.toLongString();
     }
 
     private void initData1() {

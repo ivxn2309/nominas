@@ -144,14 +144,17 @@ public class PDFController {
         ReciboDeNomina recibo = new ReciboDeNomina(emp, fecha);
         BaseFont bf = BaseFont.createFont(BaseFont.COURIER, BaseFont.WINANSI, BaseFont.EMBEDDED);
         Font font = new Font(bf, 8);
+        Font font2 = new Font(bf, 8, Font.BOLD);
 
         PdfPTable table = new PdfPTable(2);
         table.setSpacingAfter(20f);
-        Phrase head = new Phrase(recibo.getHead(), font);
+        Phrase head = new Phrase(recibo.getHead(), font2);
         PdfPCell cell = new PdfPCell(head);
         cell.setNoWrap(false);
         cell.setColspan(2);
         cell.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
+        table.addCell(cell);
+        cell.setPhrase(new Phrase(recibo.getPeriod(), font));
         table.addCell(cell);
 
         PdfPCell data1Cell = new PdfPCell(new Phrase(recibo.getData1(), font));
@@ -173,10 +176,10 @@ public class PDFController {
         table.addCell(perc);
         table.addCell(ded);
 
-        table.addCell(new Phrase("Suma de Percepciones: $ " + recibo.getSumaPer(), font));
-        table.addCell(new Phrase("Suma de Deducciones: $ " + recibo.getSumaDed(), font));
+        table.addCell(new Phrase("Suma de Percepciones: $ " + recibo.getSumaPer(), font2));
+        table.addCell(new Phrase("Suma de Deducciones: $ " + recibo.getSumaDed(), font2));
 
-        cell = new PdfPCell(new Phrase("Neto:   $ " + recibo.getNeto(), font));
+        cell = new PdfPCell(new Phrase("Neto:   $ " + recibo.getNeto(), font2));
         cell.setNoWrap(false);
         cell.setColspan(2);
         cell.setHorizontalAlignment(PdfPCell.ALIGN_RIGHT);

@@ -13,6 +13,18 @@ public class Fecha implements Serializable {
     public int mes;
     public int year;
 
+    public Fecha(int dia, int mes, int year) {
+        this.dia = dia;
+        this.mes = mes;
+        this.year = year;
+        calendar = Calendar.getInstance();
+        calendar.set(Calendar.DATE, dia);
+        calendar.set(Calendar.MONTH, mes-1);
+        calendar.set(Calendar.YEAR, year);
+        fecha = calendar.getTime();
+    }
+
+    
     public Fecha(Date fecha) {
         this.fecha = fecha;
         calendar = Calendar.getInstance();
@@ -49,6 +61,11 @@ public class Fecha implements Serializable {
         bufer.append(calendar.get(Calendar.YEAR));
         bufer.append("\n");
         return bufer.toString();
+    }
+    
+    public String toLongString() {
+        String mes = calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.US);
+        return dia + " de " + translateMonth(mes) + " de " + year;
     }
 
     public Date getFecha() {
