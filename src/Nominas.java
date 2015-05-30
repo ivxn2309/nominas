@@ -19,7 +19,7 @@ public class Nominas {
             java.util.logging.Logger.getLogger(LoginFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         
-        /*
+        
         //Muestra el formulario de identifiación
         LoginFrame login = new LoginFrame();
         java.awt.EventQueue.invokeLater(() -> {
@@ -34,7 +34,7 @@ public class Nominas {
         //Se oculta el formulario de identificaión
         login.setVisible(false);
                 
-        */
+        
         
         //Se muestra la ventana principal
         java.awt.EventQueue.invokeLater(() -> {
