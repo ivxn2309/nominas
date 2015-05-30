@@ -145,8 +145,8 @@ INSERT INTO Institucion VALUES(1, "H. Ayuntamiento de Villanueva 2013 - 2016",
 -- ------------------------------------------------
 -- Usuario
 -- ------------------------------------------------
-INSERT INTO User VALUES('ivxn2309', SHA('password'), 1);
-INSERT INTO User VALUES('pepe', SHA('password'), 0);
+INSERT INTO User VALUES('admin', SHA('password'), 1);
+INSERT INTO User VALUES('cristobal', SHA('password'), 0);
 -- ------------------------------------------------
 -- Departamentos
 -- ------------------------------------------------
