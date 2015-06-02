@@ -39,7 +39,7 @@ public class Nominas {
         //Se muestra la ventana principal
         java.awt.EventQueue.invokeLater(() -> {
             try {
-                MainWindow main = new MainWindow();
+                MainWindow main = new MainWindow(login.usrn);
                 main.setVisible(true);
             } 
             catch (IOException ex) {

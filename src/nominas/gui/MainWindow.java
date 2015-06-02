@@ -22,9 +22,10 @@ import nominas.entity.Puesto;
 import nominas.util.BackImage;
 
 public class MainWindow extends javax.swing.JFrame {
-
-    public MainWindow() throws IOException {
+    public String usr;
+    public MainWindow(String usr) throws IOException {
         try {
+            this.usr = usr;
             //Se comprueba que se puedan obtener datos de la base de  datos
             List<Empleado> lista = new EmpleadoController().getAllEmpleados();
             //Se inicializan los componentes
@@ -51,6 +52,7 @@ public class MainWindow extends javax.swing.JFrame {
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         menuInicio = new javax.swing.JMenu();
+        m = new javax.swing.JMenuItem();
         mExit = new javax.swing.JMenuItem();
         menuVer = new javax.swing.JMenu();
         mStat = new javax.swing.JMenuItem();
@@ -95,6 +97,16 @@ public class MainWindow extends javax.swing.JFrame {
         menuInicio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/arrow.png"))); // NOI18N
         menuInicio.setText("Inicio");
         menuInicio.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+
+        m.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        m.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/edit.png"))); // NOI18N
+        m.setText("Editar Perfil");
+        m.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mActionPerformed(evt);
+            }
+        });
+        menuInicio.add(m);
 
         mExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         mExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/nominas/ico/off.png"))); // NOI18N
@@ -408,9 +420,23 @@ public class MainWindow extends javax.swing.JFrame {
             desktopPane.add("InstModifier", mod);
     }//GEN-LAST:event_menuInstActionPerformed
 
+    private void mActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mActionPerformed
+        IDModifier idm = new IDModifier(usr);
+        idm.setVisible(true);
+        idm.setName("idm");
+        for(Component com : desktopPane.getComponents()){
+            if(com.getName().equalsIgnoreCase("idm")){
+                return;
+            }
+        }
+        desktopPane.add(idm);
+        idm.moveToFront();
+    }//GEN-LAST:event_mActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem m;
     private javax.swing.JMenuItem mAbout;
     private javax.swing.JMenuItem mAddEmployee;
     private javax.swing.JMenuItem mExit;

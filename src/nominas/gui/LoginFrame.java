@@ -14,6 +14,7 @@ public class LoginFrame extends javax.swing.JFrame {
 
     // Variable que indica si el usuario esta logueado en el sistema
     public boolean isGuess = true;
+    public String usrn = "";
 
     /**
      * Creates new form LoginFrame
@@ -148,6 +149,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 boolean valid = new UserController().isValidUser(user);
                 if (valid) {
                     isGuess = false;
+                    usrn = txtUser.getText();
                     statusBar.setText("Ingresando...");
                 } else {
                     isGuess = true;

@@ -92,4 +92,20 @@ public class HibernateUtil {
         }
         return result;
     }
+    
+    public static int executeHQLUpdateQuery(String hql) {
+        int result = -1;
+        Session session = sessionFactory.openSession();
+        try {
+            Query query = session.createQuery(hql);
+            result = query.executeUpdate();
+        } 
+        catch (HibernateException he) {
+            System.err.println(he.getMessage());
+        }
+        finally {
+            session.close();
+        }
+        return result;
+    }
 }
