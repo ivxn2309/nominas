@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public class Empleado implements Serializable {
+public class Empleado implements Serializable, Comparable<Empleado> {
     private int id_empleado;
     private String nombre;
     private String apellido;
@@ -200,7 +200,13 @@ public class Empleado implements Serializable {
 
     @Override
     public String toString() {
-        return nombre + " " + apellido;
+        return new String(apellido + ", " + nombre).toUpperCase();
+    }
+
+    @Override
+    public int compareTo(Empleado o) {
+        String apellido = o.getApellido();
+        return this.apellido.compareTo(apellido);
     }
     
     
