@@ -171,7 +171,10 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         panelBajaEmpleado = new javax.swing.JPanel();
         checkBaja = new javax.swing.JCheckBox();
         chooserDateBaja = new datechooser.beans.DateChooserCombo();
-        jLabel1 = new javax.swing.JLabel();
+        panelFin = new javax.swing.JPanel();
+        btnCalcularFiniquito = new javax.swing.JButton();
+        lblFiniquito = new javax.swing.JLabel();
+        lblTitleFin = new javax.swing.JLabel();
         buttonSave = new javax.swing.JButton();
         statusBar = new javax.swing.JLabel();
 
@@ -218,7 +221,7 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
                             .addComponent(labelRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelIMSS, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelCURP, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 101, Short.MAX_VALUE))
+                        .addGap(0, 109, Short.MAX_VALUE))
                     .addComponent(txtCURP))
                 .addContainerGap())
         );
@@ -295,7 +298,7 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
                             .addComponent(labelPuesto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chooserDateIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                            .addComponent(chooserDateIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                             .addComponent(spinnerSalario)
                             .addGroup(panelTrabajoLayout.createSequentialGroup()
                                 .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,7 +313,7 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
                         .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(spinnerHoras, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addGroup(panelTrabajoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelDias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(spinnerDias, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -361,23 +364,64 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setText("Aqui se calculará el finiquito");
+        panelFin.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        btnCalcularFiniquito.setText("Calcular Finiquito");
+        btnCalcularFiniquito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularFiniquitoActionPerformed(evt);
+            }
+        });
+
+        lblFiniquito.setFont(new java.awt.Font("Monaco", 1, 14)); // NOI18N
+        lblFiniquito.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFiniquito.setText("_____________");
+
+        lblTitleFin.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        lblTitleFin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitleFin.setText("Finqiuito");
+
+        javax.swing.GroupLayout panelFinLayout = new javax.swing.GroupLayout(panelFin);
+        panelFin.setLayout(panelFinLayout);
+        panelFinLayout.setHorizontalGroup(
+            panelFinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFinLayout.createSequentialGroup()
+                .addContainerGap(48, Short.MAX_VALUE)
+                .addComponent(btnCalcularFiniquito, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
+            .addGroup(panelFinLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblFiniquito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(panelFinLayout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(lblTitleFin, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelFinLayout.setVerticalGroup(
+            panelFinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFinLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitleFin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(lblFiniquito, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCalcularFiniquito, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout panelBajaEmpleadoLayout = new javax.swing.GroupLayout(panelBajaEmpleado);
         panelBajaEmpleado.setLayout(panelBajaEmpleadoLayout);
         panelBajaEmpleadoLayout.setHorizontalGroup(
             panelBajaEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBajaEmpleadoLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panelBajaEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBajaEmpleadoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panelBajaEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(checkBaja)
-                            .addComponent(chooserDateBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panelBajaEmpleadoLayout.createSequentialGroup()
-                        .addGap(192, 192, 192)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(129, Short.MAX_VALUE))
+                    .addComponent(checkBaja)
+                    .addComponent(chooserDateBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(panelFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panelBajaEmpleadoLayout.setVerticalGroup(
             panelBajaEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -385,10 +429,12 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(checkBaja)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chooserDateBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addGroup(panelBajaEmpleadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBajaEmpleadoLayout.createSequentialGroup()
+                        .addComponent(chooserDateBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(panelFin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         tabbedPanel.addTab("Dar de baja", panelBajaEmpleado);
@@ -485,6 +531,22 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         chooserDateBaja.setEnabled(status);
     }//GEN-LAST:event_checkBajaActionPerformed
 
+    private void btnCalcularFiniquitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularFiniquitoActionPerformed
+        double money = empleado.getSalario() * empleado.getDias_jornada() * 6.0;
+        Calendar yearAgo = Calendar.getInstance();
+        int year = yearAgo.get(Calendar.YEAR);
+        yearAgo.set(Calendar.YEAR, year-1);
+        
+        Calendar ing = Calendar.getInstance();
+        ing.setTime(empleado.getFechaIngreso());
+        if(ing.before(yearAgo))
+            money += empleado.getSalario() * empleado.getDias_jornada();
+        
+        money = Math.round(money * 100) / 100;
+        String result = "$" + money + " MXN";
+        lblFiniquito.setText(result);
+    }//GEN-LAST:event_btnCalcularFiniquitoActionPerformed
+
     private boolean validateFields(){
         if(txtNombre.getText().trim().length() < 2)
             statusBar.setText("Debes introducir un nombre válido.");
@@ -529,6 +591,7 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCalcularFiniquito;
     private javax.swing.JButton buttonSave;
     private javax.swing.JCheckBox checkBaja;
     private datechooser.beans.DateChooserCombo chooserDateBaja;
@@ -536,7 +599,6 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox comboDepartamentos;
     private javax.swing.JComboBox comboNominas;
     private javax.swing.JComboBox comboPuestos;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelApellidos;
     private javax.swing.JLabel labelCURP;
     private javax.swing.JLabel labelDep;
@@ -550,8 +612,11 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel labelPuesto;
     private javax.swing.JLabel labelRFC;
     private javax.swing.JLabel labelSalario;
+    private javax.swing.JLabel lblFiniquito;
+    private javax.swing.JLabel lblTitleFin;
     private javax.swing.JPanel panelBajaEmpleado;
     private javax.swing.JPanel panelBasico;
+    private javax.swing.JPanel panelFin;
     private javax.swing.JPanel panelTrabajo;
     private javax.swing.JSpinner spinnerDias;
     private javax.swing.JSpinner spinnerHoras;
