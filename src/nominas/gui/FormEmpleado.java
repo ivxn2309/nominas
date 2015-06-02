@@ -375,7 +375,7 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
 
         lblFiniquito.setFont(new java.awt.Font("Monaco", 1, 14)); // NOI18N
         lblFiniquito.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFiniquito.setText("_____________");
+        lblFiniquito.setText("Presione para calcular");
 
         lblTitleFin.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
         lblTitleFin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -386,12 +386,12 @@ public class FormEmpleado extends javax.swing.JInternalFrame {
         panelFinLayout.setHorizontalGroup(
             panelFinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFinLayout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnCalcularFiniquito, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
             .addGroup(panelFinLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblFiniquito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblFiniquito, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(panelFinLayout.createSequentialGroup()
                 .addGap(61, 61, 61)
